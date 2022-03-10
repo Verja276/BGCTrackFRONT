@@ -44,17 +44,14 @@ function AdminHome() {
                 <br></br>
                 <br></br>
                 <Link to="/Signup" className="link"  >Sign up </Link>
-                <form onSubmit={handleLogout}>
                     <br></br>
                     <br></br>
                     <br></br>
                     <br></br>
-
-                    <button type="submit" className="submitButton">Logout</button>
-                </form>
-
+                    <form className="logout" onSubmit={handleLogout}>
+                        <button type="submit" className="submitButton">Logout</button>
+                    </form>
             </div>
-
         </div>
 
     );

@@ -1,7 +1,7 @@
 import React from "react";
 import "../App.css";
 import { useState } from "react";
-import  background from "../background5.jpg";
+import background from "../background5.jpg";
 
 
 function Admin() {
@@ -16,6 +16,7 @@ function Admin() {
         }
     }, []);
 
+    //change this later
     const handleLogout = async (e) => {
         try {
             e.preventDefault();
@@ -31,24 +32,26 @@ function Admin() {
 
     document.body.style.backgroundColor = "#23272A";
     return (
-        <div className="background" style={{ backgroundImage: `url(${background})`,  backgroundSize: 'cover'}}>
+        <div className="background" style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }}>
             <div className="form1" >
-                <button className="submitButton"> Register Equipment </button>                
-                <br></br>                 
+                <button className="submitButton"> Register Equipment </button>
+                <br></br>
                 <br></br>
                 <br></br>
 
-                <button className="submitButton"> Search Equipment </button>                
+                <button className="submitButton"> Search Equipment </button>
                 <br></br>
                 <br></br>
                 <br></br>
                 <br></br>
-                <br></br>                
-                <button type="submit" className="submitButton">Logout</button>
+                <br></br>
+                <form className="logout" onSubmit={handleLogout}>
+                    <button type="submit" className="submitButton">Logout</button>
+                </form>
 
 
             </div>
-        </div> 
+        </div>
 
     );
 }
