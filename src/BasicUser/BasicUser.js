@@ -1,5 +1,6 @@
 import React from "react";
 import "../App.css";
+import  background from "../background5.jpg";
 const handleLogout = async (e) => {
     try {
       e.preventDefault();
@@ -11,13 +12,17 @@ const handleLogout = async (e) => {
 };
 function BasicUser () {
     return (
-        <ul>
-            <button className="submitButton"> Search Equipment </button>     
-            <form onSubmit={handleLogout}>
-                <br></br>
-                <button type="submit" className="submitButton">Logout</button>
-            </form>
-        </ul>
+        <div className="background" style={{ backgroundImage: `url(${background})`,  backgroundSize: 'cover'}}>
+            <ul>
+                <div className="form">
+                    <button className="submitButton"> Search Equipment </button>
+
+                    <form className="logout" onSubmit={handleLogout}>
+                    <button type="submit" className="submitButton">Logout</button>
+                    </form>
+                </div>
+            </ul>
+        </div>
     );
 }
 
