@@ -33,7 +33,7 @@ function Signup() {
             if (name === "" || email === "" || password === "" || status === "") {
                 window.alert("fill out all fields before signing up.")
             } else {
-            const res = await axios.post("/signup", {name, email, password, status});
+            const res = await axios.post("https://bgctrack.herokuapp.com/api/signup", {name, email, password, status});
             setUser(res.data);
             window.alert("user added!");
             }
