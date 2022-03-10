@@ -19,18 +19,27 @@ function Admin() {
      
 
 
+    // const handleLogout = async (e) => {
+    //     console.log("hello");
+    //     try {
+    //         console.log("hello");
+    //       e.preventDefault();
+    //       window.localStorage.clear();
+    //       if(localStorage.length == 0){
+    //           console.log("hello");
+    //       }
+    //       window.location.reload();
+    //   } catch (err) {
+    //         window.alert("logout failure!")
+    //     }
+    // };
     const handleLogout = async (e) => {
-        console.log("hello");
         try {
-            console.log("hello");
           e.preventDefault();
-          window.localStorage.clear();
-          if(localStorage.length == 0){
-              console.log("hello");
-          }
+          sessionStorage.clear();
           window.location.reload();
       } catch (err) {
-            window.alert("logout failure!")
+        window.alert("logout failure!")
         }
     };
 
