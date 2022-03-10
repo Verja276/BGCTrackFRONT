@@ -30,7 +30,7 @@ function Signup() {
     const handleSignUP = async (e) => {
         e.preventDefault();
         try {
-            if (name === "" || email === "" || password === "" || status != "b" || status != "a" || status != "e") {
+            if (name === "" || email === "" || password === "" || status === "") {
                 window.alert("fill out all fields before signing up.")
             } else {
             const res = await axios.post("https://bgctrack.herokuapp.com/api/signup", {name, email, password, status});
@@ -94,10 +94,11 @@ function Signup() {
                 <label for="role"></label>
                 <br>
                 </br> 
-                <select onChange={(e) => setStatus(e.target.value)} id="roles" name="role">                          
-                <option value="b">Basic User</option>                         
-                <option value="e">Equipment Manager</option>                         
-                <option value="a">Admin</option>                     
+                <select id="roles" name="role">                          
+                <option onChange={(e) => setStatus(e.target.value)} value="b">Basic User</option> 
+                <option onChange={(e) => setStatus(e.target.value)} value="e">Equipment Manager</option> 
+                <option onChange={(e) => setStatus(e.target.value)} value="a">Admin</option>
+                                     
                 </select>                <br>
                 </br>
 
