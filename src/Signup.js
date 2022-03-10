@@ -90,7 +90,7 @@ function Signup() {
                     placeholder="password"
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <div>
+                {/* <div>
                 <label for="role"></label>
                 <br>
                 </br> 
@@ -102,7 +102,31 @@ function Signup() {
                 </select>                <br>
                 </br>
 
+                </div> */}
+                <div>
+<input
+                    type="radio"
+                    id="admin"
+                    name="role"
+                    value="a"
+                    onChange={(e) => {setStatus(e.target.value)}}
+                /><label>Administrator</label>
+                <input
+                    type="radio"
+                    id="equipment-manager"
+                    name="role"
+                    value="e"
+                    onChange={(e) => {setStatus(e.target.value)}}
+                /><label>Equipment Manager</label>
+                <input
+                    type="radio"
+                    id="basic"
+                    name="role"
+                    value="b"
+                    onChange={(e) => {setStatus(e.target.value)}}
+                /><label>Basic User</label>
                 </div>
+                
                 <br></br>
                 <br></br>
                 <br></br>
