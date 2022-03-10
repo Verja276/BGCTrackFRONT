@@ -6,6 +6,7 @@ import jwt_decode from "jwt-decode";
 import Admin from "./Admin/AdminHome";
 import BasicUser from "./BasicUser/BasicUser";
 import EquipmentManager from "./EquipmentManager/EquipmentManager";
+import  background from "./background5.jpg";
 
 
 
@@ -106,24 +107,26 @@ function LoginHome() {
                    :((sessionStorage.getItem("user_status") === "a" ? (<Admin />):(sessionStorage.getItem("user_status") === "b" ? (<BasicUser />) : <EquipmentManager/>)
                    ))
                    ):(
-                    <div className="login">
-                        <form onSubmit={handleSubmit}>
-                            <span className="formTitle">BGC Login</span>
-                            <input
-                                type="text"
-                                placeholder="email"
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                            <input
-                                type="password"
-                                placeholder="password"
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                            <button type="submit" className="submitButton">
-                                Login
-                            </button>
-                        </form>
-                    </div>
+                    <div className="background" style={{ backgroundImage: `url(${background})`,  backgroundSize: 'cover'}}>
+                        <div className="form">
+                            <form onSubmit={handleSubmit}>
+                                <span className="formTitle" >BGC Login</span>
+                                <input
+                                    type="text"
+                                    placeholder="email"
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                                <input
+                                    type="password"
+                                    placeholder="password"
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                                <button type="submit" className="submitButton">
+                                    Login
+                                </button>
+                            </form>
+                        </div>
+                    </div> 
                 )
             }
         </div>
