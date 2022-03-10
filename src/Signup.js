@@ -67,7 +67,7 @@ function Signup() {
 
     return (
         <div className="container" >
-        <div  className="background" style={{ backgroundImage: url($,{background}),  backgroundSize: 'cover'}} >
+        <div  className="background" style={{ backgroundImage: `url(${background})`,  backgroundSize: 'cover'}} >
         <div  className="form1">
 
             <span className="formTitle" >SIGN UP USERS</span>
@@ -78,7 +78,7 @@ function Signup() {
                 type="text"
                 placeholder="name"
                 onChange={(e) => setName(e.target.value)}
-            />
+            />    
             <input
                 type="text"
                 placeholder="email"
@@ -93,34 +93,34 @@ function Signup() {
                 <label for="role"></label>
                 <br>
                 </br> 
-                <select id="roles" name="role" onChange={(e) => setStatus(e.target.value)}>
+                <select id="roles" name="role" onChange={(e) => setStatus(e.target.value)}>                          
                     <option  value="b">Basic User</option> 
                     <option  value="e">Equipment Manager</option> 
-                    <option  value="a">Admin</option>
-                </select>
+                    <option  value="a">Admin</option>                       
+                </select>                
                 <br></br>
             </div>
-            <br></br>
-            <br></br>
-            <br></br>
+            <br></br>                     
+            <br></br>                
+            <br></br>                     
             <br></br>
             <button type="submit" className="submitButton" >Sign up</button> 
             <br>
             </br>
             </form>
-            <br></br>
+            <br></br>                     
             <br></br>
 
-            <Link to="/" className="link">Go back</Link>
+            <Link to="/" className="link">Go back</Link>      
 
 
+            <br></br>                     
             <br></br>
-            <br></br>
-            <br></br>
+            <br></br>                     
             </div>
         </div>
 
-
+        
 
 
 
