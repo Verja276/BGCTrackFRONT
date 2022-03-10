@@ -67,7 +67,7 @@ function Signup() {
 
     return (
         <div className="container" >
-        <div  className="background" style={{ backgroundImage: url($background),  backgroundSize: 'cover'}} >
+        <div  className="background" style={{ backgroundImage: url(${background}),  backgroundSize: 'cover'}} >
         <div  className="form1">
 
             <span className="formTitle" >SIGN UP USERS</span>
