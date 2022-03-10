@@ -30,11 +30,14 @@ function Signup() {
     const handleSignUP = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("https://bgctrack.herokuapp.com/api/signup", {name, email, password, status});
+            if (name === "" || email === "" || password === "" || status === "") {
+                window.alert("fill out all fields before signing up.")
+            } else {
+            const res = await axios.post("/signup", {name, email, password, status});
             setUser(res.data);
             window.alert("user added!");
+            }
         } catch (err) {
-            window.alert("Fill all the form");
             console.log(err)
         }
     }
