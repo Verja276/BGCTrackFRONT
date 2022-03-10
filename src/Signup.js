@@ -16,10 +16,7 @@ function Signup() {
         const refToken = sessionStorage.getItem("refresh-token"); //get sessionStorage
         const accToken = sessionStorage.getItem("access-token"); //get sessionStorage
         if (refToken, accToken) {
-            console.log("json data: " + JSON.stringify(refToken,accToken));
           setUser(JSON.parse(refToken,accToken));
-          console.log(refToken);
-          console.log(accToken);
         }
     }, []);
      

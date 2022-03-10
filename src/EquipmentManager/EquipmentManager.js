@@ -1,8 +1,8 @@
 import React from "react";
 import "../App.css";
 import { useState } from "react";
-import axios from "axios";
-import jwt_decode from "jwt-decode";
+import  background from "../background5.jpg";
+
 
 function Admin() {
     const [user, setUser] = useState(null);
@@ -12,34 +12,17 @@ function Admin() {
         const refToken = localStorage.getItem("refresh-token"); //get localstorage
         const accToken = localStorage.getItem("access-token"); //get localstorage
         if (refToken, accToken) {
-            console.log("json data: " + JSON.stringify(refToken,accToken));
-          setUser(JSON.parse(refToken,accToken));
+            setUser(JSON.parse(refToken, accToken));
         }
     }, []);
-     
 
-
-    // const handleLogout = async (e) => {
-    //     console.log("hello");
-    //     try {
-    //         console.log("hello");
-    //       e.preventDefault();
-    //       window.localStorage.clear();
-    //       if(localStorage.length == 0){
-    //           console.log("hello");
-    //       }
-    //       window.location.reload();
-    //   } catch (err) {
-    //         window.alert("logout failure!")
-    //     }
-    // };
     const handleLogout = async (e) => {
         try {
-          e.preventDefault();
-          sessionStorage.clear();
-          window.location.reload();
-      } catch (err) {
-        window.alert("logout failure!")
+            e.preventDefault();
+            sessionStorage.clear();
+            window.location.reload();
+        } catch (err) {
+            window.alert("logout failure!")
         }
     };
 
@@ -48,21 +31,24 @@ function Admin() {
 
     document.body.style.backgroundColor = "#23272A";
     return (
-        <div className="container" >
-
-            <button className="submitButton"> Register Equipment </button>                
-            <br></br>                 
-            <br></br>
-            <button className="submitButton"> Search Equipment </button>                
-            <br></br>                
-            <br></br>
-            <form onSubmit={handleLogout}>
+        <div className="background" style={{ backgroundImage: `url(${background})`,  backgroundSize: 'cover'}}>
+            <div className="form1" >
+                <button className="submitButton"> Register Equipment </button>                
+                <br></br>                 
                 <br></br>
-                <button type="submit" className="submitButton">
-                Logout</button>
-            </form>
+                <br></br>
 
-        </div>
+                <button className="submitButton"> Search Equipment </button>                
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>                
+                <button type="submit" className="submitButton">Logout</button>
+
+
+            </div>
+        </div> 
 
     );
 }

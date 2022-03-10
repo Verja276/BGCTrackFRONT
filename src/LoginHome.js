@@ -26,8 +26,6 @@ function LoginHome() {
         const loginTime = sessionStorage.getItem("session-start");
         const sessionLimit = 20;
         if (currentTime && loginTime) {
-            console.log("from login:");
-            console.log(currentTime-loginTime);
             if ((currentTime-loginTime) > sessionLimit) {
                 const res = axios.post("https://bgctrack.herokuapp.com/api/logout")
                 setUser(res.data);
@@ -36,10 +34,7 @@ function LoginHome() {
             }
         }
         if (refToken, accToken) {
-            console.log("json data: " + JSON.stringify(refToken,accToken));
           setUser(JSON.parse(refToken,accToken));
-          console.log(refToken);
-          console.log(accToken);
         }
     }, []);
      
