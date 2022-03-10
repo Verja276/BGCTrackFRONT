@@ -30,7 +30,7 @@ function Signup() {
     const handleSignUP = async (e) => {
         e.preventDefault();
         try {
-            if (name === "" || email === "" || password === "" || status === "") {
+            if (name === "" || email === "" || password === "") {
                 window.alert("fill out all fields before signing up.")
             } else {
             const res = await axios.post("https://bgctrack.herokuapp.com/api/signup", {name, email, password, status});
