@@ -3,6 +3,7 @@ import "./App.css";
 import { useState } from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
+import  background from "./background5.jpg";
 //import Signup from "./Signup";
 function Signup() {
     const [user, setUser] = useState(null);
@@ -66,78 +67,60 @@ function Signup() {
 
     return (
         <div className="container" >
-                           <br></br>
-                           <br></br>
-                           <br></br>
-                           <br></br>
-                           <br></br>
-                           <br></br>
-                           <br></br>
-                           <br></br>
+        <div  className="background" style={{ backgroundImage: url($background),  backgroundSize: 'cover'}} >
+        <div  className="form1">
+
+            <span className="formTitle" >SIGN UP USERS</span>
+            <br></br>
+            <br></br>
             <form onSubmit={handleSignUP}>
-                <input
-                    type="text"
-                    placeholder="name"
-                    onChange={(e) => setName(e.target.value)}
-                />    
-                <input
-                    type="text"
-                    placeholder="email"
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <input
-                    type="password"
-                    placeholder="password"
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                {/* <div>
+            <input
+                type="text"
+                placeholder="name"
+                onChange={(e) => setName(e.target.value)}
+            />
+            <input
+                type="text"
+                placeholder="email"
+                onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+                type="password"
+                placeholder="password"
+                onChange={(e) => setPassword(e.target.value)}
+            />
+            <div>
                 <label for="role"></label>
                 <br>
                 </br> 
-                <select id="roles" name="role">                          
-                <option onChange={(e) => setStatus(e.target.value)} value="b">Basic User</option> 
-                <option onChange={(e) => setStatus(e.target.value)} value="e">Equipment Manager</option> 
-                <option onChange={(e) => setStatus(e.target.value)} value="a">Admin</option>
-                                     
-                </select>                <br>
-                </br>
-
-                </div> */}
-                <div>
-<input
-                    type="radio"
-                    id="admin"
-                    name="role"
-                    value="a"
-                    onChange={(e) => {setStatus(e.target.value)}}
-                /><label>Administrator</label>
-                <input
-                    type="radio"
-                    id="equipment-manager"
-                    name="role"
-                    value="e"
-                    onChange={(e) => {setStatus(e.target.value)}}
-                /><label>Equipment Manager</label>
-                <input
-                    type="radio"
-                    id="basic"
-                    name="role"
-                    value="b"
-                    onChange={(e) => {setStatus(e.target.value)}}
-                /><label>Basic User</label>
-                </div>
-                
+                <select id="roles" name="role" onChange={(e) => setStatus(e.target.value)}>
+                    <option  value="b">Basic User</option> 
+                    <option  value="e">Equipment Manager</option> 
+                    <option  value="a">Admin</option>
+                </select>
                 <br></br>
-                <br></br>
-                <br></br>
-                                           
-                    <button type="submit" className="submitButton">Sign up</button> 
-                <br>
-                </br>
+            </div>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <button type="submit" className="submitButton" >Sign up</button> 
+            <br>
+            </br>
             </form>
+            <br></br>
+            <br></br>
 
-            <br></br> <br></br>                           <br></br>
-            <Link to="/" className="signup">Go back</Link>            
+            <Link to="/" className="link">Go back</Link>
+
+
+            <br></br>
+            <br></br>
+            <br></br>
+            </div>
+        </div>
+
+
 
 
 
@@ -145,5 +128,6 @@ function Signup() {
 
     );
 }
+
 
 export default Signup;
