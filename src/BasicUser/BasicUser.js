@@ -1,6 +1,7 @@
 import React from "react";
 import "../App.css";
 import background from "../background5.jpg";
+import {Helmet} from "react-helmet";
 const handleLogout = async (e) => {
     try {
         e.preventDefault();
@@ -13,6 +14,7 @@ const handleLogout = async (e) => {
 function BasicUser() {
     return (
         <div className="background" style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }}>
+            <Helmet><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" ></meta></Helmet>
             <ul>
                 <div className="form">
                     <button className="submitButton"> Search Equipment </button>

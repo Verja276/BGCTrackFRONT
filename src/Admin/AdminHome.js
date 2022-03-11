@@ -3,6 +3,7 @@ import "../App.css";
 import { useState } from "react";
 import { Link } from 'react-router-dom';
 import background from "../background5.jpg";
+import {Helmet} from "react-helmet";
 
 function AdminHome() {
     const [user, setUser] = useState(null);
@@ -31,6 +32,7 @@ function AdminHome() {
 
     return (
         <div className="background" style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }} >
+            <Helmet><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" ></meta></Helmet>
             <div className="form1" >
                 <button className="submitButton"> Register Equipment </button>
                 <br></br>

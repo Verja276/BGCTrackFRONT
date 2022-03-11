@@ -4,6 +4,8 @@ import { useState } from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
 import  background from "./background5.jpg";
+import {Helmet} from "react-helmet";
+
 //import Signup from "./Signup";
 function Signup() {
     const [user, setUser] = useState(null);
@@ -64,6 +66,7 @@ function Signup() {
 
     return (
         <div className="container" >
+        <Helmet><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" ></meta></Helmet>
         <div  className="background" style={{ backgroundImage: `url(${background})`,  backgroundSize: 'cover'}} >
         <div  className="form1">
 

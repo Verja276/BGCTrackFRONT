@@ -7,6 +7,7 @@ import Admin from "./Admin/AdminHome";
 import BasicUser from "./BasicUser/BasicUser";
 import EquipmentManager from "./EquipmentManager/EquipmentManager";
 import  background from "./background5.jpg";
+import {Helmet} from "react-helmet";
 
 
 
@@ -103,6 +104,7 @@ function LoginHome() {
                    ))
                    ):(
                     <div className="background" style={{ backgroundImage: `url(${background})`,  backgroundSize: 'cover'}}>
+                        <Helmet><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" ></meta></Helmet>
                         <div className="form">
                             <form onSubmit={handleSubmit}>
                                 <span className="formTitle" >BGC Login</span>
