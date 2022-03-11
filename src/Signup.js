@@ -95,9 +95,10 @@ function Signup() {
                             <br>
                             </br>
                             <select id="roles" name="role" onChange={(e) => setStatus(e.target.value)}>
+                                <option value="">Select Role</option>
                                 <option value="b">Basic User</option>
                                 <option value="e">Equipment Manager</option>
-                                <option value="a">Admin</option>
+                                <option value="a">Administrator</option>
                             </select>
                             <br></br>
                         </div>
