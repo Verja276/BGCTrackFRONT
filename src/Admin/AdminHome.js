@@ -42,7 +42,7 @@ function AdminHome() {
                 <button className="submitButton"> Search Equipment </button>
                 <br></br>
                 <br></br>
-                <br></br>
+                <br></br>   
                 <br></br>
                 <br></br>
                 <Link to="/Signup" className="link"  >Sign up </Link>
