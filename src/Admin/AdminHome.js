@@ -48,6 +48,7 @@ function AdminHome() {
                     <br></br>
                     <br></br>
                     <br></br>
+                    <br></br>
                     <form className="logout" onSubmit={handleLogout}>
                         <button type="submit" className="submitButton">Logout</button>
                     </form>
