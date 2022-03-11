@@ -5,7 +5,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import background from "./background5.jpg";
 import { Helmet } from "react-helmet";
-import { Redirect } from 'react-router';
+import { Navigate } from 'react-router-dom';
 
 //import Signup from "./Signup";
 function Signup() {
@@ -122,7 +122,7 @@ function Signup() {
             </div>
 
         </div>
-        ) : (<Redirect to='/' />)
+        ) : (<Navigate to="/" replace={true} />)
 
     );
 }
