@@ -1,23 +1,22 @@
-import React, { useState, useEffect } from "react"; //STORE DATA
+import React, {useState, useEffect} from "react"; //STORE DATA
 import "./App.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import es6 from "es6-promise";
 import "isomorphic-fetch";
-import { Navigate } from 'react-router-dom';
 //import from datatable folder
 import Datatable from "./datatable";
+import {Button} from "react-bootstrap";
 es6.polyfill();
-
 
 //import SearchEquip from "./SearchEquip";
 function SearchEquip() {
     //default value [getter, setteer]
 
-    const [data, setData] = useState([]);
-    const [q, setQ] = useState(""); //query filter
-    const [searchColumns, setSearchColumns] = useState(["serial_number", "equipment_status"]);
-    const [l, setL] = useState("");
+    const[data, setData] = useState([]);
+    const[q, setQ]=useState(""); //query filter
+    const[searchColumns, setSearchColumns] = useState(["serial_number","equipment_status"]);
+    const[l, setL ]= useState("");
     const [user, setUser] = useState(null);
     const [status, setStatus] = useState("");
 
@@ -26,26 +25,25 @@ function SearchEquip() {
         const refToken = sessionStorage.getItem("refresh-token"); //get sessionStorage
         const accToken = sessionStorage.getItem("access-token"); //get sessionStorage
         if (refToken, accToken) {
-            console.log("json data: " + JSON.stringify(refToken, accToken));
-            setUser(JSON.parse(refToken, accToken));
-            console.log(refToken);
-            console.log(accToken);
+            console.log("json data: " + JSON.stringify(refToken,accToken));
+          setUser(JSON.parse(refToken,accToken));
+          console.log(refToken);
+          console.log(accToken);
         }
     }, []);
 
 
-    useEffect(() => {
+    useEffect(()=> {
         axios.get(`https://bgctrack.herokuapp.com/api/GeneralEquipmentQuery`)
-
-            .then((response) => {
-                console.log(response.data.equips)
-                console.log(data);
-                return response.data.equips;
-            })
-            .then(function (myJson) {
-                console.log(myJson);
-                setData(myJson)
-            });
+        .then((response)=>{
+          console.log(response.data.equips)
+          console.log(data);
+          return response.data.equips;
+        })
+        .then(function(myJson) {
+          console.log(myJson);
+          setData(myJson)
+        });
 
     }, []);
 
@@ -53,10 +51,7 @@ function SearchEquip() {
     // document.body.style.backgroundColor = "#23272A";
 
 
-
-
-
-    function search(rows) {
+    function search(rows){
 
         return rows.filter((row) =>
             searchColumns.some(
@@ -68,87 +63,52 @@ function SearchEquip() {
             ),
         );
     }
+    function handleDelete() {
+        axios.post(`https://bgctrack.herokuapp.com/api/deleteEquipment`)
+        .then((response)=>{
+            console.log(response.data.equips)
+            console.log(data);
+            return response.data.equips;
+        });
+    }
     const columns = data[0] && Object.keys(data[0]);
     return (
-
-
-        (sessionStorage.getItem("user_status") == "a") ? (
+        <div>
             <div>
-                <div>
-                    <input
-                        type='text'
-                        value={q}
-                        onChange={(e) => setQ(e.target.value)}
-                    />
-                    {columns &&
-                        columns.map((column) => (
-                            <label>
-                                <input
-                                    type='checkbox'
-                                    checked={searchColumns.includes(column)}
-                                    onChange={(e) => {
-                                        const checked = searchColumns.includes(column);
-                                        setSearchColumns((prev) =>
-                                            checked
-                                                ? prev.filter((sc) => sc !== column)
-                                                : [...prev, column],
-                                        );
-                                    }}
-                                />
-                                {column}
-                            </label>
-                        ))}
-                </div>
-                <div>
-                    <Datatable data={search(data)} />
-                </div>
+                <input
+                    id="inpData"
+                    type='text'
+                    value={q}
+                    onChange={(e) => setQ(e.target.value)}
+                />
+                {columns &&
+                    columns.map((column) => (
+                        <label>
+                            <input
+                                type='checkbox'
+                                checked={searchColumns.includes(column)}
+                                onChange={(e) => {
+                                    const checked = searchColumns.includes(column);
+                                    setSearchColumns((prev) =>
+                                        checked
+                                            ? prev.filter((sc) => sc !== column)
+                                            : [...prev, column],
+                                    );
+                                }}
+                            />
+
+                            {column}
+                        </label>
+                    ))}
             </div>
-        ) : ((sessionStorage.getItem("user_status") != null) ? (
             <div>
-                <div>
-                    <input
-                        type='text'
-                        value={q}
-                        onChange={(e) => setQ(e.target.value)}
-                    />
-                    {columns &&
-                        columns.map((column) => (
-                            <label>
-                                <input
-                                    type='checkbox'
-                                    checked={searchColumns.includes(column)}
-                                    onChange={(e) => {
-                                        const checked = searchColumns.includes(column);
-                                        setSearchColumns((prev) =>
-                                            checked
-                                                ? prev.filter((sc) => sc !== column)
-                                                : [...prev, column],
-                                        );
-                                    }}
-                                />
-                                {column}
-                            </label>
-                        ))}
-                </div>
-                <br>
-                </br>
-                <br>
-                </br>
-                <div>
-                    <Datatable data={search(data)} />
-                </div>
-                <br>
-                </br>
-                <br>
-                </br>
-                <br>
-                </br>
-                <br>
-                </br>
-                <Link to="/" className="link">Go back</Link>
-            </div>) : (<Navigate to="/" replace={true} />)
-        )
+                <br></br><br></br>
+                <Button onClick={handleDelete}> Delete </Button>
+                <br></br><br></br>
+                <Datatable data={search(data)} />
 
+            </div>
+        </div>
     );
 }
 
