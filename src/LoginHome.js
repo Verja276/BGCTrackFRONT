@@ -28,7 +28,7 @@ function LoginHome() {
         const sessionLimit = 20;
         if (currentTime && loginTime) {
             if ((currentTime-loginTime) > sessionLimit) {
-                const res = axios.post("https://bgctrack.herokuapp.com/api/logout")
+                const res = axios.post("/logout")
                 setUser(res.data);
                 sessionStorage.clear();
                 window.location.reload();
@@ -43,7 +43,7 @@ function LoginHome() {
 
     const refreshToken = async () => {
         try {
-            const res = await axios.post("https://bgctrack.herokuapp.com/api/refresh", { token: user.refreshToken });
+            const res = await axios.post("/refresh", { token: user.refreshToken });
             setUser({
                 ...user,
                 accessToken: res.data.accessToken,
@@ -80,7 +80,7 @@ function LoginHome() {
         e.preventDefault();
         try {
             let loginDate = new Date().getMinutes();
-            const res = await axios.post("https://bgctrack.herokuapp.com/api/login", { email, password });
+            const res = await axios.post("/login", { email, password });
             sessionStorage.setItem("refresh-token",JSON.stringify(res.data.refreshToken)); //set sessionStorage
             sessionStorage.setItem("access-token", JSON.stringify(res.data.accessToken)); //set sessionStorage
             sessionStorage.setItem("user_status", jwt_decode(sessionStorage.getItem("access-token")).status); //set sessionStorage
@@ -107,26 +107,23 @@ function LoginHome() {
                         <Helmet><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" ></meta></Helmet>
                         <div className="form">
                             <form onSubmit={handleSubmit}>
-                                <span className="formTitle" >BGC Login</span>
+                                <span className="formTitle">BGC Login</span>
                                 <input
                                     type="text"
                                     placeholder="email"
-                                    onChange={(e) => setEmail(e.target.value)}
-                                />
+                                    onChange={(e) => setEmail(e.target.value)} />
                                 <input
                                     type="password"
                                     placeholder="password"
-                                    onChange={(e) => setPassword(e.target.value)}
-                                />
+                                    onChange={(e) => setPassword(e.target.value)} />
                                 <button type="submit" className="submitButton">
                                     Login
                                 </button>
                             </form>
                         </div>
-                    </div> 
-                )
-            }
-        </div>
+                    </div>
+                )}
+            </div>
 
     );
 

@@ -1,6 +1,7 @@
 .container {
   font-family: "Quicksand", sans-serif;
   text-align: center;
+  margin-left:5px;
 
 }
 .background{
@@ -178,4 +179,43 @@ input:focus {
   background-color: rgb(0,75,145);
   color: white;
   cursor: pointer;
+}
+
+#barcodeoutput {
+  background-color: white;
+}
+
+.barcode {
+  margin-left: 10px;
+}
+:root {
+  
+  font-size: 14px;
+}
+
+.thead,
+tr {
+  background-color: honeydew;
+}
+
+.tr,
+th {
+  white-space: nowrap;
+  padding: 1rem;
+  text-align: left;
+  background-color: honeydew;
+}
+
+tbody,
+tr:nth-child(odd) {
+  background-color: white;
+}
+
+.tbody,
+tr,
+td {
+  white-space: nowrap;
+  width: 20%;
+  overflow-wrap: break-word;
+  padding: 0.5rem;
 }
