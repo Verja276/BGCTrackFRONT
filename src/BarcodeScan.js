@@ -59,7 +59,7 @@ function BarcodeScan() {
         e.preventDefault();
         if (barcode_id, serial_number, equipment_type, category, project, equipment_status, equipment_group, email, location) {
             const borrower = email;
-            const res = await axios.post("/addEquipment", {barcode_id, serial_number, equipment_type, category, project, equipment_status, equipment_group, borrower, location});
+            const res = await axios.post("https://bgctrack.herokuapp.com/api/addEquipment", {barcode_id, serial_number, equipment_type, category, project, equipment_status, equipment_group, borrower, location});
             //const res = await axios.post("/addEquipment",{barcode_id});
             setUser(res.data);
             window.alert("sent equipment to database!");
