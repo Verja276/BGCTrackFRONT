@@ -35,7 +35,7 @@ function SearchEquip() {
 
 
     useEffect(()=> {
-        axios.get(`/GeneralEquipmentQuery`)
+        axios.get(`https://bgctrack.herokuapp.com/api/GeneralEquipmentQuery`)
         
         .then((response)=>{
           console.log(response.data.equips)
