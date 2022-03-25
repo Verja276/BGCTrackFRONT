@@ -3,9 +3,9 @@ import "./App.css";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import LoginHome from "./LoginHome";
 import Signup from "./Signup";
-import BarcodeScan from "./BarcodeScan.js";
-import SearchEquip from "./SearchEquip";
-
+import BarcodeScan from "./SignUpEquip.js";
+import SearchEquip from "./SearchEquip.js";
+import SearchUser from "./SearchUser.js";
 
 function App() {
   return (
@@ -16,11 +16,12 @@ function App() {
             <Route path="/Signup" element={<Signup />} />
             <Route path="/BarcodeScan" element={<BarcodeScan />} />
             <Route path="/SearchEquip" element={<SearchEquip />} />
+            <Route path="/SearchUser" element={<SearchUser />} />
           </Routes>
         </Router>
       </>
   );
-
+  
 }
 
 export default App;

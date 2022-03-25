@@ -6,8 +6,8 @@ import jwt_decode from "jwt-decode";
 import Admin from "./Admin/AdminHome";
 import BasicUser from "./BasicUser/BasicUser";
 import EquipmentManager from "./EquipmentManager/EquipmentManager";
-import  background from "./background5.jpg";
-import {Helmet} from "react-helmet";
+import background from "./background5.jpg";
+import { Helmet } from "react-helmet";
 
 
 
@@ -27,7 +27,7 @@ function LoginHome() {
         const loginTime = sessionStorage.getItem("session-start");
         const sessionLimit = 20;
         if (currentTime && loginTime) {
-            if ((currentTime-loginTime) > sessionLimit) {
+            if ((currentTime - loginTime) > sessionLimit) {
                 const res = axios.post("https://bgctrack.herokuapp.com/api/logout")
                 setUser(res.data);
                 sessionStorage.clear();
@@ -35,10 +35,10 @@ function LoginHome() {
             }
         }
         if (refToken, accToken) {
-          setUser(JSON.parse(refToken,accToken));
+            setUser(JSON.parse(refToken, accToken));
         }
     }, []);
-     
+
 
 
     const refreshToken = async () => {
@@ -81,7 +81,7 @@ function LoginHome() {
         try {
             let loginDate = new Date().getMinutes();
             const res = await axios.post("https://bgctrack.herokuapp.com/api/login", { email, password });
-            sessionStorage.setItem("refresh-token",JSON.stringify(res.data.refreshToken)); //set sessionStorage
+            sessionStorage.setItem("refresh-token", JSON.stringify(res.data.refreshToken)); //set sessionStorage
             sessionStorage.setItem("access-token", JSON.stringify(res.data.accessToken)); //set sessionStorage
             sessionStorage.setItem("user_status", jwt_decode(sessionStorage.getItem("access-token")).status); //set sessionStorage
             sessionStorage.setItem("session-start", JSON.stringify(loginDate));
@@ -91,39 +91,38 @@ function LoginHome() {
         }
     };
 
-    document.body.style.backgroundColor = "#23272A";
 
     //The Login Home element
     return (
 
         <div className="container">
             {user ? (  //does user exist? if yes this page if not the other
-                   sessionStorage.getItem("user_status") == null ? ((((user.status === "a" ? (  <Admin /> ): (user.status === "b" ? (<BasicUser />) : <EquipmentManager/>)
-                   ))))
-                   :((sessionStorage.getItem("user_status") === "a" ? (<Admin />):(sessionStorage.getItem("user_status") === "b" ? (<BasicUser />) : <EquipmentManager/>)
-                   ))
-                   ):(
-                    <div className="background" style={{ backgroundImage: `url(${background})`,  backgroundSize: 'cover'}}>
-                        <Helmet><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" ></meta></Helmet>
-                        <div className="form">
-                            <form onSubmit={handleSubmit}>
-                                <span className="formTitle">BGC Login</span>
-                                <input
-                                    type="text"
-                                    placeholder="email"
-                                    onChange={(e) => setEmail(e.target.value)} />
-                                <input
-                                    type="password"
-                                    placeholder="password"
-                                    onChange={(e) => setPassword(e.target.value)} />
-                                <button type="submit" className="submitButton">
-                                    Login
-                                </button>
-                            </form>
-                        </div>
+                sessionStorage.getItem("user_status") == null ? ((((user.status === "a" ? (<Admin />) : (user.status === "b" ? (<BasicUser />) : <EquipmentManager />)
+                ))))
+                    : ((sessionStorage.getItem("user_status") === "a" ? (<Admin />) : (sessionStorage.getItem("user_status") === "b" ? (<BasicUser />) : <EquipmentManager />)
+                    ))
+            ) : (
+                <div className="background" style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }}>
+                    <Helmet><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" ></meta></Helmet>
+                    <div className="form">
+                        <form onSubmit={handleSubmit}>
+                            <span className="formTitle">BGC Login</span>
+                            <input
+                                type="text"
+                                placeholder="email"
+                                onChange={(e) => setEmail(e.target.value)} />
+                            <input
+                                type="password"
+                                placeholder="password"
+                                onChange={(e) => setPassword(e.target.value)} />
+                            <button type="submit" className="submitButton">
+                                Login
+                            </button>
+                        </form>
                     </div>
-                )}
-            </div>
+                </div>
+            )}
+        </div>
 
     );
 

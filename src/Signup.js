@@ -63,14 +63,11 @@ function Signup() {
         <signup />
     };
 
-    document.body.style.backgroundColor = "#23272A";
-
     return (
         (sessionStorage.getItem("user_status") == "a") ? (<div className="container" >
             <Helmet><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" ></meta></Helmet>
             <div className="background" style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }} >
                 <div className="form1">
-
                     <span className="formTitle" >SIGN UP USERS</span>
                     <br></br>
                     <br></br>
@@ -100,7 +97,7 @@ function Signup() {
                                 <option value="e">Equipment Manager</option>
                                 <option value="a">Administrator</option>
                             </select>
-                            <br></br>
+                        <br></br>
                         </div>
                         <br></br>
                         <br></br>

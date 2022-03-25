@@ -34,28 +34,48 @@ function AdminHome() {
         <div className="background" style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }} >
             <Helmet><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" ></meta></Helmet>
             <div className="form1" >
-                <button className="submitButton"> Register Equipment </button>
                 <br></br>
                 <br></br>
                 <br></br>
-
-                <button className="submitButton"> Search Equipment </button>
+                <Link to="/SearchEquip" className="link" >Search equipment</Link>
                 <br></br>
                 <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <Link to="/SearchUser" className="link" >Search Users</Link>
                 <br></br>   
                 <br></br>
                 <br></br>
-                <Link to="/Signup" className="link"  >Sign up </Link>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <Link to="/Signup" className="link"  >Add Users</Link>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <Link to="/BarcodeScan" className="link" >Add equipment</Link>
+                <br>
+                </br>
+                
+                <br></br>
+                    <br></br>
+                    <br></br>
+
                     <br></br>
                     <br></br>
                     <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <form className="logout" onSubmit={handleLogout}>
-                        <button type="submit" className="submitButton">Logout</button>
-                    </form>
+                <form className="logout" onSubmit={handleLogout}>
+                    <button type="submit" className="submitButton">Logout</button>
+                </form>
             </div>
         </div>
 
