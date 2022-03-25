@@ -14,7 +14,6 @@ es6.polyfill();
 //import SearchEquip from "./SearchEquip";
 function SearchUserPro() {
     //default value [getter, setteer]
-
     const [data, setData] = useState([]);
     const [q, setQ] = useState(""); //query filter
     const [searchColumns, setSearchColumns] = useState(["user_name", "user_id"]);
@@ -62,49 +61,54 @@ function SearchUserPro() {
     return (
         <div>
             <div>
-                <input
-                    type='text'
-                    value={q}
-                    onChange={(e) => setQ(e.target.value)}
-                />
-                {columns &&
-                    columns.map((column) => (
-                        <label>
-                            <input
-                                type='checkbox'
-                                checked={searchColumns.includes(column)}
-                                onChange={(e) => {
-                                    const checked = searchColumns.includes(column);
-                                    setSearchColumns((prev) =>
-                                        checked
-                                            ? prev.filter((sc) => sc !== column)
-                                            : [...prev, column],
-                                    );
-                                }}
-                            />
-                            {column}
-                        </label>
-                    ))}
+                <div class="form-control">
+                    {columns &&
+                        columns.map((column) => (
+                            <label class="ms-5">
+                                <div class="mt-3 mb-4">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input"
+                                            type="checkbox"
+                                            role="switch"
+                                            style={{ transform: "scale(3)" }}
+                                            id="flexSwitchCheckDefault"
+                                            checked={searchColumns.includes(column)}
+                                            onChange={(e) => {
+                                                const checked = searchColumns.includes(column);
+                                                setSearchColumns((prev) =>
+                                                    checked
+                                                        ? prev.filter((sc) => sc !== column)
+                                                        : [...prev, column],
+                                                );
+                                            }}
+                                        />
+                                        <div class="ms-5">
+                                            <label class="h3" for="flexSwitchCheckDefault">{column}</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </label>
+                        ))}
+                    <div class="form-control">
+                        <input
+                            id="inpData"
+                            name="DATA"
+                            type='text'
+                            placeholder="Search Manually, To delete search with barcode id"
+                            class="form-control"
+                            value={q}
+                            onChange={(e) => { setQ(e.target.value); }}
+                        />
+                        <Datatable data={search(data)} />
+                    </div>
+                    <div class="m-3">
+                        <Link to="/" style={{ transform: "scale(1.3)" }} class="btn btn-outline-danger btn-lg btn-block"> Go back </Link>
+                    </div>
+                </div>
             </div>
-            <br>
-            </br>
-            <br>
-            </br>
-            <div>
-                <Datatable data={search(data)} />
-            </div>
-            <br>
-            </br>
-            <br>
-            </br>
-            <br>
-            </br>
-            <br>
-            </br>
-            <Link to="/" className="link">Go back</Link>
         </div>
-
     );
-}
 
+}
 export default SearchUserPro;

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import background from "./background5.jpg";
 import { Helmet } from "react-helmet";
 import { Navigate } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
 
 //import Signup from "./Signup";
 function Signup() {
@@ -39,6 +40,7 @@ function Signup() {
                 window.alert("user added!");
             }
         } catch (err) {
+            window.alert("user already there")
             console.log(err)
         }
     }
@@ -59,69 +61,59 @@ function Signup() {
     };
 
 
-    const handleGoToSignUp = async (e) => {
-        <signup />
-    };
+
 
     return (
-        (sessionStorage.getItem("user_status") == "a") ? (<div className="container" >
-            <Helmet><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" ></meta></Helmet>
-            <div className="background" style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }} >
-                <div className="form1">
-                    <span className="formTitle" >SIGN UP USERS</span>
-                    <br></br>
-                    <br></br>
-                    <form onSubmit={handleSignUP}>
-                        <input
-                            type="text"
-                            placeholder="name"
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                        <input
-                            type="text"
-                            placeholder="email"
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                        <input
-                            type="password"
-                            placeholder="password"
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                        <div>
-                            <label for="role"></label>
-                            <br>
-                            </br>
-                            <select id="roles" name="role" onChange={(e) => setStatus(e.target.value)}>
-                                <option value="">Select Role</option>
-                                <option value="b">Basic User</option>
-                                <option value="e">Equipment Manager</option>
-                                <option value="a">Administrator</option>
+        (sessionStorage.getItem("user_status") == "a") ? (
+            <div className="container" >
+                <Helmet><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" ></meta></Helmet>
+                <div className="background" style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }} >
+                    <Form class="align-items-center" onSubmit={handleSignUP}>
+                        <Form.Group class="form-control" >
+                            <Form.Label>Name</Form.Label>
+                            <input
+                                type="text"
+                                placeholder="name"
+                                onChange={(e) => setName(e.target.value)}
+                                class="form-control"
+                            />
+                            <Form.Label>Email</Form.Label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="email"
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                            <Form.Label>Password</Form.Label>
+                            <input
+                                class="form-control"
+                                type="password"
+                                placeholder="password"
+                                onChange={(e) => setPassword(e.target.value)}/>
+                            <Form.Label>Location</Form.Label>
+                            <select id="sel1" multiple name="role" class="form-control" onChange={(e) => setStatus(e.target.value)}>
+                                <option value="a">Admin</option>
+                                <option value="b">Basic</option>
+                                <option value="e">Equipment manager</option>
                             </select>
-                        <br></br>
-                        </div>
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                        <button type="submit" className="submitButton" >Sign up</button>
-                        <br>
-                        </br>
-                    </form>
-                    <br></br>
-                    <br></br>
+                            <div class="mb-1 mt-3">
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <button type="submit" class="btn btn-outline-success btn-lg btn-block">Add User</button>
+                                </div>
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <div class="row">
+                                        <Link to="/" class="btn btn-outline-danger btn-lg btn-block"> Go back </Link>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <Link to="/" className="link">Go back</Link>
-
-
-                    <br></br>
-                    <br></br>
-                    <br></br>
+                        </Form.Group>
+                    </Form>
                 </div>
             </div>
-
-        </div>
         ) : (<Navigate to="/" replace={true} />)
-
     );
 }
 

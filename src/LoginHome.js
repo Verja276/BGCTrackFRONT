@@ -110,12 +110,14 @@ function LoginHome() {
                             <input
                                 type="text"
                                 placeholder="email"
+                                class="form-control"
                                 onChange={(e) => setEmail(e.target.value)} />
                             <input
                                 type="password"
                                 placeholder="password"
+                                class="form-control"
                                 onChange={(e) => setPassword(e.target.value)} />
-                            <button type="submit" className="submitButton">
+                            <button type="submit" class="btn btn-success btn-lg col-12  mb-4">
                                 Login
                             </button>
                         </form>

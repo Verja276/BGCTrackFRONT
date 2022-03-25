@@ -3,8 +3,9 @@ import "../App.css";
 import { useState } from "react";
 import { Link } from 'react-router-dom';
 import background from "../background5.jpg";
-import {Helmet} from "react-helmet";
-
+import { Helmet } from "react-helmet";
+import BarcodeScannerComponent from "react-webcam-barcode-scanner";
+import Form from 'react-bootstrap/Form';
 function AdminHome() {
     const [user, setUser] = useState(null);
 
@@ -34,47 +35,12 @@ function AdminHome() {
         <div className="background" style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }} >
             <Helmet><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" ></meta></Helmet>
             <div className="form1" >
-                <br></br>
-                <br></br>
-                <br></br>
-                <Link to="/SearchEquip" className="link" >Search equipment</Link>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <Link to="/SearchUser" className="link" >Search Users</Link>
-                <br></br>   
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <Link to="/Signup" className="link"  >Add Users</Link>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <Link to="/BarcodeScan" className="link" >Add equipment</Link>
-                <br>
-                </br>
-                
-                <br></br>
-                    <br></br>
-                    <br></br>
-
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                <form className="logout" onSubmit={handleLogout}>
-                    <button type="submit" className="submitButton">Logout</button>
+                <Link to="/SearchEquip" class="btn btn-primary btn-lg col-12 mb-4">Search equipment</Link>
+                <Link to="/SearchUser" class="btn btn-dark btn-lg col-12 mb-4">Search Users</Link>
+                <Link to="/Signup"  class="btn btn-success btn-lg col-12  mb-4">Add Users</Link>
+                <Link to="/BarcodeScan"  class="btn btn-warning btn-lg col-12  mb-4" >Add equipment</Link>
+                <form className="mb-2" onSubmit={handleLogout}>
+                    <button type="submit" class="btn btn-danger btn-lg col-12 ">Logout</button>
                 </form>
             </div>
         </div>

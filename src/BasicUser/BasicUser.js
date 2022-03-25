@@ -17,21 +17,16 @@ function BasicUser() {
         <div className="background" style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }}>
             
             <Helmet><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" ></meta></Helmet>
-            <ul>
-                <div className="form">
-                <br></br>
-                <br></br>
-                <br></br>   
-                <Link to="/SearchEquip" className="link" >Search equipment</Link>
-
-                <br></br>
-                <br></br>   
-
-                <form className="logout" onSubmit={handleLogout}>
-                    <button type="submit" className="submitButton">Logout</button>
+            <div className="background" style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }} >
+            <Helmet><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" ></meta></Helmet>
+            <div className="form1" >
+                <Link to="/SearchEquip" class="btn btn-primary btn-lg col-12 mb-4">Search equipment</Link>
+                <form className="mb-2" onSubmit={handleLogout}>
+                    <button type="submit" class="btn btn-danger btn-lg col-12 ">Logout</button>
                 </form>
-                </div>
-            </ul>
+            </div>
+        </div>
+
         </div>
     );
 }

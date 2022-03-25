@@ -84,8 +84,6 @@ function SignUpEquipPro() {
                         </>
                     </div>
                     <p class="h1" >Detected barcode: {barcode_id}</p>
-
-                    
                 </Form>
             </div>
 
@@ -149,7 +147,6 @@ function SignUpEquipPro() {
                         <option value="Halifax">Halifax</option>
                         <option value="Victoria">Victoria</option>
                     </select>
-
                     <div class="mb-1 mt-3">
                         <div class="d-flex justify-content-center align-items-center">
                             <button type="submit" class="btn btn-outline-success btn-lg btn-block">Add Equipment</button>
@@ -160,7 +157,6 @@ function SignUpEquipPro() {
                             <div class="row">
                             <Link to="/" class="btn btn-outline-success btn-lg btn-block"> Go back </Link>
                             </div>
-
                         </div>
                     </div>
 

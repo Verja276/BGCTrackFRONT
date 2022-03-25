@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"; //STORE DATA
-import "../App.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import es6 from "es6-promise";
@@ -7,6 +6,7 @@ import "isomorphic-fetch";
 //import from datatable folder
 import Datatable from "../datatable";
 import BarcodeScannerComponent from "react-webcam-barcode-scanner";
+import Form from 'react-bootstrap/Form';
 es6.polyfill();
 var BarcodeID = "";
 //import SearchEquip from "./SearchEquip";
@@ -15,7 +15,7 @@ function SearchEquipBasic() {
 
     const [data, setData] = useState([]);
     const [q, setQ] = useState(""); //query filter
-    const [searchColumns, setSearchColumns] = useState(["serial_number", "equipment_status"]);
+    const [searchColumns, setSearchColumns] = useState(["barcode_id", "equipment_status"]);
     const [user, setUser] = useState(null);
     const [barcode_id, setBarcodeItem] = useState("");
 
@@ -84,68 +84,78 @@ function SearchEquipBasic() {
     const search_barcode = ({ barcode_id }) => <form onSubmit={inputBarcode}></form>
     const columns = data[0] && Object.keys(data[0]);
     return (
-        <div>
-            <form onSubmit={ScanBarcode}>
-                <><BarcodeScannerComponent
-                    width={500}
-                    height={500}
-                    onUpdate={(err, result) => {
-                        if (result) {
-                            const barcodeData = result.text
-                            setBarcodeItem(barcodeData);
-                            sessionStorage.setItem("barcode", JSON.stringify(barcodeData));
-                        }
-                    }} />
-                </>
-                <button type="submit" className="submitButton" >Search BARCODE</button>
-            </form>
-            <form>
-                <p className="formTitle">{barcode_id}</p>
-            </form>
-            <div>
-                <input
-                    id="inpData"
-                    name="DATA"
-                    type='text'
-                    placeholder="Search Manually"
-                    value={q}
-                    onChange={(e) => { setQ(e.target.value); BarcodeID = e.target.value; }}
-                />
+        <container>
+            <Form class="row" onSubmit={ScanBarcode}>
+                <div class="mb-1 pr-5">
+                    <><BarcodeScannerComponent
+                        width={500}
+                        height={500}
+                        onUpdate={(err, result) => {
+                            if (result) {
+                                const barcodeData = result.text
+                                setBarcodeItem(barcodeData);
+                                // addEntryClick();
+                                sessionStorage.setItem("barcode", JSON.stringify(barcodeData));
+                                // window.alert("This barcode was detected: " + sessionStorage.getItem("barcode"));
+                            }
+                        }} />
+                    </>
+                    
+                </div>
+                <div class="mb-2">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <button type="submit" style={{ transform: "scale(1.3)" }} class="btn btn-outline-success btn-lg btn-block">Search using Barcode</button>
+                    </div>
+                </div>
+                <p class="h3" >Detected barcode: {barcode_id}</p>
+            </Form>
+            <div class="form-control">
                 {columns &&
                     columns.map((column) => (
-                        <label>
-                            <input
-                                type='checkbox'
-                                checked={searchColumns.includes(column)}
-                                onChange={(e) => {
-                                    const checked = searchColumns.includes(column);
-                                    setSearchColumns((prev) =>
-                                        checked
-                                            ? prev.filter((sc) => sc !== column)
-                                            : [...prev, column],
-                                    );
-                                }}
-                            />
+                        <label class="ms-5">
+                            <div class="mt-3 mb-4">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input"
+                                        type="checkbox"
+                                        role="switch"
+                                        style={{ transform: "scale(3)" }}
+                                        id="flexSwitchCheckDefault"
+                                        checked={searchColumns.includes(column)}
+                                        onChange={(e) => {
+                                            const checked = searchColumns.includes(column);
+                                            setSearchColumns((prev) =>
+                                                checked
+                                                    ? prev.filter((sc) => sc !== column)
+                                                    : [...prev, column],
+                                            );
+                                        }}
+                                    />
+                                    <div class="ms-5">
+                                        <label class="h3" for="flexSwitchCheckDefault">{column}</label>
+                                    </div>
+                                </div>
+                            </div>
 
-                            {column}
                         </label>
                     ))}
-            </div>
-            <div>
-                <Datatable data={search(data)} />
+                <div class="form-control">
+                    <input
+                        id="inpData"
+                        name="DATA"
+                        type='text'
+                        placeholder="Search Manually, To delete search with barcode id"
+                        class="form-control"
+                        value={q}
+                        onChange={(e) => { setQ(e.target.value); BarcodeID = e.target.value; }}
+                    />
+                    <Datatable data={search(data)} />
+                </div>
+                <div class="m-3">
+                    <Link to="/"  style={{ transform: "scale(1.3)" }} class="btn btn-outline-danger btn-lg btn-block"> Go back </Link>
+                </div>
 
             </div>
-            <br>
-            </br>
-            <br>
-            </br>
-            <br>
-            </br>
-            <br>
-            </br>
-            <Link to="/" className="link">Go back</Link>
-        </div>
-
+        </container>
 
     );
 }
