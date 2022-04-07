@@ -9,7 +9,7 @@ import axios from 'axios';
 es6.polyfill();
 
 function CheckIn() {
-    useEffect(() => {
+    React.useEffect(() => {
         const currentTime = new Date().getMinutes();
         const loginTime = sessionStorage.getItem("session-start");
         const [user, setUser] = useState(null);

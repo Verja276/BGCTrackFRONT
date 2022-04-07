@@ -10,7 +10,7 @@ import {useState, useEffect} from 'react';
 //import Signup from "./Signup";
 //
 function SignUpEquip() {
-    useEffect(() => {
+    React.useEffect(() => {
         const [user, setUser] = useState(null);
         const currentTime = new Date().getMinutes();
         const loginTime = sessionStorage.getItem("session-start");

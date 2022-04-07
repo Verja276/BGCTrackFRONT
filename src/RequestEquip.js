@@ -8,7 +8,7 @@ import axios from 'axios';
 es6.polyfill();
 //
 function RequestEquip() {
-    useEffect(() => {
+    React.useEffect(() => {
         const [user, setUser] = useState(null);
         const currentTime = new Date().getMinutes();
         const loginTime = sessionStorage.getItem("session-start");

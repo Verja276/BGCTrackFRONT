@@ -7,7 +7,7 @@ import axios from 'axios';
 import {useState, useEffect} from 'react';
 //
 function ManageRequests() {
-    useEffect(() => {
+    React.useEffect(() => {
         const [user, setUser] = useState(null);
         const currentTime = new Date().getMinutes();
         const loginTime = sessionStorage.getItem("session-start");
