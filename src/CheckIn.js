@@ -7,7 +7,7 @@ import Basic from "./BasicUser/SearchEquipBasic";
 import Pro from "./notBasic/CheckInPro";
 import axios from 'axios';
 es6.polyfill();
-//
+
 function CheckIn() {
     useEffect(() => {
         const currentTime = new Date().getMinutes();
