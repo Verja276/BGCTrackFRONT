@@ -19,6 +19,7 @@ function RequestDetailModal(props) {
     const [startTime, setStartTime] = useState("");
     const [endDate, setEndDate] = useState("");
     const [endTime, setEndTime] = useState("");
+    const [user, setUser] = useState("");
     const [equipmentGroup, setEquipmentGroup] = useState("");
     
     useEffect(() => {
