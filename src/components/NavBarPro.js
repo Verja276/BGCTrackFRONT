@@ -20,7 +20,7 @@ export default function () {
 
 
                             <NavDropdown title="Other" id="basic-nav-dropdown">
-                            <NavDropdown.Item onClick={handleCleanStorage} href="/yourequip">Your Equipment</NavDropdown.Item>
+                                <NavDropdown.Item onClick={handleCleanStorage} href="/yourequip">Your Equipment</NavDropdown.Item>
                                 <NavDropdown.Item onClick={handleCleanStorage} href="/SearchEquip">Search Equipment</NavDropdown.Item>
                                 <NavDropdown.Item onClick={handleCleanStorage} href="/SearchUser">Search Users</NavDropdown.Item>
                                 <NavDropdown.Divider />
@@ -48,7 +48,7 @@ export default function () {
                             <Nav.Link href="/">Home</Nav.Link>
 
                             <NavDropdown title="Other" id="basic-nav-dropdown">
-                            <NavDropdown.Item onClick={handleCleanStorage} href="/yourequip">Your Equipment</NavDropdown.Item>
+                                <NavDropdown.Item onClick={handleCleanStorage} href="/yourequip">Your Equipment</NavDropdown.Item>
                                 <NavDropdown.Item onClick={handleCleanStorage} href="/SearchEquip">Search Equipment</NavDropdown.Item>
                                 <NavDropdown.Item onClick={handleCleanStorage} href="/BarcodeScan">Add Equipment</NavDropdown.Item>
                                 <NavDropdown.Divider />
@@ -75,16 +75,9 @@ export default function () {
 
 
                             <NavDropdown title="Other" id="basic-nav-dropdown">
-                            <NavDropdown.Item onClick={handleCleanStorage} href="/yourequip">Your Equipment</NavDropdown.Item>
+                                <NavDropdown.Item onClick={handleCleanStorage} href="/yourequip">Your Equipment</NavDropdown.Item>
                                 <NavDropdown.Item onClick={handleCleanStorage} href="/SearchEquip">Search Equipment</NavDropdown.Item>
-                                <NavDropdown.Item onClick={handleCleanStorage} href="/SearchUser">Search Users</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item onClick={handleCleanStorage} href="/BarcodeScan">Add Equipment</NavDropdown.Item>
-                                <NavDropdown.Item onClick={handleCleanStorage} href="/Signup">Add User</NavDropdown.Item>
-                                <NavDropdown.Divider />
                                 <NavDropdown.Item onClick={handleCleanStorage} href="/RequestEquip">Request Equipment</NavDropdown.Item>
-                                <NavDropdown.Item onClick={handleCleanStorage} href="/manageRequests">Check Out</NavDropdown.Item>
-                                <NavDropdown.Item onClick={handleCleanStorage} href="/CheckIn">Check In</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                     </Navbar.Collapse>
