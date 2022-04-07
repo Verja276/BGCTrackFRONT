@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet";
 import { Navigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import {useState, useEffect} from 'react';
-import Navbar from "../components/NavBarPro";
+import Navbar from "./components/NavBarPro";
 
 //import Signup from "./Signup";
 function Signup() {
