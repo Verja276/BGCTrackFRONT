@@ -4,16 +4,18 @@ import axios from "axios";
 import es6 from "es6-promise";
 import "isomorphic-fetch";
 import Datatable from "../datatable";
+import BarcodeScannerComponent from "react-webcam-barcode-scanner";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Modal from "react-modal";
+import Form from 'react-bootstrap/Form';
 import Navbar from "../components/NavBarPro";
 es6.polyfill();
 var BarcodeID = "";
 
-function SearchEquipBasic() {
+function YourEquipBasic() {
     const [data, setData] = useState([]);
     const [q, setQ] = useState(""); //query filter
-    const [searchColumns, setSearchColumns] = useState([ "category"]);
+    const [searchColumns, setSearchColumns] = useState([ "end_date"]);
     const [user, setUser] = useState(null);
     const [barcode_id, setBarcodeItem] = useState("");
     const [modalIsOpen, setIsOpen] = useState(false);
@@ -27,7 +29,8 @@ function SearchEquipBasic() {
 
 
     useEffect(() => {
-        axios.get(`https://bgctrack.herokuapp.com/api/GeneralEquipmentQueryBasic`)
+        var email = sessionStorage.getItem('user_email')
+        axios.get(`https://bgctrack.herokuapp.com/api/UserEquipQuery/${email}`)
             .then((response) => {
                 return response.data.equips;
             })
@@ -73,7 +76,7 @@ function SearchEquipBasic() {
                     id="inpData"
                     name="DATA"
                     type='text'
-                    placeholder=" Perform action with barcode"
+                    placeholder="Search"
                     class="form-control"
                     value={q}
                     onChange={(e) => { setQ(e.target.value); BarcodeID = e.target.value; }}
@@ -124,4 +127,4 @@ function SearchEquipBasic() {
     );
 }
 
-export default SearchEquipBasic;
+export default YourEquipBasic;

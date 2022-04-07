@@ -2,12 +2,12 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import background from "../background5.jpg";
+import Navbar from "../components/NavBarPro";
 import BarcodeScannerComponent from "react-webcam-barcode-scanner";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
 
-
+//
 //import Signup from "./Signup";
 
 function SignUpEquipPro() {
@@ -36,7 +36,7 @@ function SignUpEquipPro() {
         e.preventDefault();
 
         try {
-            const barcodeScan = sessionStorage.getItem("barcode");
+            const barcodeScan = localStorage.getItem("barcode");
             if (barcodeScan === "" || barcodeScan === null) {
                 window.alert("Please display barcode clearly when scanning it in.")
             } else if (barcodeScan != null && barcodeScan != "") {
@@ -49,13 +49,12 @@ function SignUpEquipPro() {
     const signUpEquipment = async (e) => {
         e.preventDefault();
         if (barcode_id, serial_number, equipment_type, category, project, equipment_status, equipment_group, location) {
-            const res = await axios.post("https://bgctrack.herokuapp.com/api/addEquipment", { barcode_id, serial_number, equipment_type, category, project, equipment_status, equipment_group, location }).catch(
-                window.alert("It's Already added")
+            const res = await axios.post("https://bgctrack.herokuapp.com/api/addEquipment", { barcode_id, serial_number, equipment_type, category, project, equipment_status, equipment_group, location }
             );
             setUser(res.data);
             window.alert("sent equipment to database!");
         } else {
-            window.alert("Some missing field!")
+            window.alert("Some missing field or equipment already exists!")
         }
 
     }
@@ -66,18 +65,19 @@ function SignUpEquipPro() {
 
     return (
         <container>
+            <Navbar />
             <div class="align-items-center">
                 <Form class="row" onSubmit={ScanBarcode}>
                     <div class="mb-1 pr-5">
                         <><BarcodeScannerComponent
-                            width={500}
-                            height={500}
+                            width={300}
+                            height={300}
                             onUpdate={(err, result) => {
                                 if (result) {
                                     const barcodeData = result.text
                                     setBarcodeItem(barcodeData);
                                     // addEntryClick();
-                                    sessionStorage.setItem("barcode", JSON.stringify(barcodeData));
+                                    localStorage.setItem("barcode", JSON.stringify(barcodeData));
                                     // window.alert("This barcode was detected: " + sessionStorage.getItem("barcode"));
                                 }
                             }} />
@@ -98,45 +98,44 @@ function SignUpEquipPro() {
                         placeholder="Barcode id"
                         class="form-control"
                         id="barcode" />
-                    <Form.Label>Serial number</Form.Label>
+                    <Form.Label className="mt-3">Serial number</Form.Label>
                     <input
                         type="text"
                         placeholder="serial number"
                         class="form-control"
                         value={serial_number}
                         onChange={(e) => setSerialNumber(e.target.value)} />
-                    <Form.Label>Equipment Type</Form.Label>
+                    <Form.Label className="mt-3">Equipment Type</Form.Label>
                     <input
                         type="text"
                         placeholder="equipment type"
                         class="form-control"
                         onChange={(e) => setEquipmentType(e.target.value)} />
-                    <Form.Label>Category</Form.Label>
+                    <Form.Label className="mt-3">Category</Form.Label>
                     <input
                         type="text"
                         placeholder="category"
                         class="form-control"
                         onChange={(e) => setCategory(e.target.value)} />
-                    <Form.Label>Project</Form.Label>
+                    <Form.Label className="mt-3">Project</Form.Label>
                     <input
                         type="text"
                         placeholder="project"
                         class="form-control"
                         onChange={(e) => setProject(e.target.value)} />
-                    <Form.Label>Status</Form.Label>
-                    <select id="roles" multiple name="role" onChange={(e) => setStatus(e.target.value)} class="form-control">
+                    <Form.Label className="mt-3">Status</Form.Label>
+                    <select id="roles" multiple name="role" onChange={(e) => setEquipmentStatus(e.target.value)} class="form-control">
                         <option value="Available">Available</option>
                         <option value="Lost">Lost</option>
-                        <option value="Checked out">Checked out</option>
                         <option value="Retired">Retired</option>
                     </select>
-                    <Form.Label>Equipment Group</Form.Label>
+                    <Form.Label className="mt-3">Equipment Group</Form.Label>
                     <input
                         type="text"
                         placeholder="equipment group"
                         onChange={(e) => setEquipmentGroup(e.target.value)}
                         class="form-control" />
-                    <Form.Label>Location</Form.Label>
+                    <Form.Label className="mt-3">Location</Form.Label>
                     <select id="sel1" multiple name="role" class="form-control" onChange={(e) => setLocation(e.target.value)}>
                         <option value="Vancouver">Vancouver</option>
                         <option value="Kamloops">Kamloops</option>
@@ -147,19 +146,11 @@ function SignUpEquipPro() {
                         <option value="Halifax">Halifax</option>
                         <option value="Victoria">Victoria</option>
                     </select>
-                    <div class="mb-1 mt-3">
+                    <div class="mb-4 mt-3">
                         <div class="d-flex justify-content-center align-items-center">
-                            <button type="submit" class="btn btn-outline-success btn-lg btn-block">Add Equipment</button>
+                            <button type="submit" class="btn btn-success btn-lg btn-block">Add Equipment</button>
                         </div>
                     </div>
-                    <div class="mb-3 mt-3">
-                        <div class="d-flex justify-content-center align-items-center">
-                            <div class="row">
-                            <Link to="/" class="btn btn-outline-success btn-lg btn-block"> Go back </Link>
-                            </div>
-                        </div>
-                    </div>
-
                 </Form.Group>
             </Form>
             

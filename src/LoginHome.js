@@ -8,7 +8,7 @@ import BasicUser from "./BasicUser/BasicUser";
 import EquipmentManager from "./EquipmentManager/EquipmentManager";
 import background from "./background5.jpg";
 import { Helmet } from "react-helmet";
-
+import photo from "./BGCLogo-_Hex_004B91.svg";
 
 
 //function setStat (param)
@@ -21,10 +21,12 @@ function LoginHome() {
     const [password, setPassword] = useState("");
 
     React.useEffect(() => {
+        //date_create = ;
         const currentTime = new Date().getMinutes();
         const refToken = sessionStorage.getItem("refresh-token"); //get sessionStorage
         const accToken = sessionStorage.getItem("access-token"); //get sessionStorage
         const loginTime = sessionStorage.getItem("session-start");
+        checkForOverdueEquipment();
         const sessionLimit = 20;
         if (currentTime && loginTime) {
             if ((currentTime - loginTime) > sessionLimit) {
@@ -39,7 +41,16 @@ function LoginHome() {
         }
     }, []);
 
-
+    const checkForOverdueEquipment = async (e) => {
+        const current_date = new Date();
+        try {
+        axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment" ,{current_date});
+        }
+        catch (err) {
+           console.log(err);
+        }
+        
+    }
 
     const refreshToken = async () => {
         try {
@@ -84,6 +95,8 @@ function LoginHome() {
             sessionStorage.setItem("refresh-token", JSON.stringify(res.data.refreshToken)); //set sessionStorage
             sessionStorage.setItem("access-token", JSON.stringify(res.data.accessToken)); //set sessionStorage
             sessionStorage.setItem("user_status", jwt_decode(sessionStorage.getItem("access-token")).status); //set sessionStorage
+            sessionStorage.setItem("user_email", jwt_decode(sessionStorage.getItem("access-token")).email)
+            console.log(sessionStorage.getItem("user_email"))
             sessionStorage.setItem("session-start", JSON.stringify(loginDate));
             setUser(res.data);
         } catch (err) {
@@ -102,20 +115,19 @@ function LoginHome() {
                     : ((sessionStorage.getItem("user_status") === "a" ? (<Admin />) : (sessionStorage.getItem("user_status") === "b" ? (<BasicUser />) : <EquipmentManager />)
                     ))
             ) : (
-                <div className="background" style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }}>
-                    <Helmet><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" ></meta></Helmet>
-                    <div className="form">
+                <div class="align-items-center">
+                    <div class="mt-5 form-control">
                         <form onSubmit={handleSubmit}>
-                            <span className="formTitle">BGC Login</span>
+                            <h1 className="text-primary mb-4"><strong>{<div> <img src={photo} height="85" width="85" alt="LOGO" /> </div>}</strong></h1>
                             <input
                                 type="text"
                                 placeholder="email"
-                                class="form-control"
+                                class="form-control mb-4"
                                 onChange={(e) => setEmail(e.target.value)} />
                             <input
                                 type="password"
                                 placeholder="password"
-                                class="form-control"
+                                class="form-control mb-4"
                                 onChange={(e) => setPassword(e.target.value)} />
                             <button type="submit" class="btn btn-success btn-lg col-12  mb-4">
                                 Login

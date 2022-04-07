@@ -1,34 +1,49 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"; //STORE DATA
 import "../App2.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import es6 from "es6-promise";
 import "isomorphic-fetch";
+import { Navigate } from 'react-router-dom';
+//import from datatable folder//
 import Datatable from "../datatable";
+import BarcodeScannerComponent from "react-webcam-barcode-scanner";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Form from 'react-bootstrap/Form';
 import Modal from "react-modal";
 import Navbar from "../components/NavBarPro";
 es6.polyfill();
 var BarcodeID = "";
 
-function SearchEquipBasic() {
+//import SearchEquip from "./SearchEquip";
+function SearchEquipPro() {
+    //default value [getter, setteer]
+
     const [data, setData] = useState([]);
     const [q, setQ] = useState(""); //query filter
-    const [searchColumns, setSearchColumns] = useState([ "category"]);
+    const [searchColumns, setSearchColumns] = useState(["equipment_barcode", "borrower"]);
     const [user, setUser] = useState(null);
     const [barcode_id, setBarcodeItem] = useState("");
     const [modalIsOpen, setIsOpen] = useState(false);
+
     React.useEffect(() => {
         const refToken = sessionStorage.getItem("refresh-token"); //get sessionStorage
         const accToken = sessionStorage.getItem("access-token"); //get sessionStorage
         if (refToken, accToken) {
+            console.log("json data: " + JSON.stringify(refToken, accToken));
             setUser(JSON.parse(refToken, accToken));
+            console.log(refToken);
+            console.log(accToken);
         }
     }, []);
 
 
     useEffect(() => {
-        axios.get(`https://bgctrack.herokuapp.com/api/GeneralEquipmentQueryBasic`)
+        setData([])
+        axios.get(`https://bgctrack.herokuapp.com/api/CheckInQuery`)
             .then((response) => {
+                console.log(response.data.equips)
+                console.log(data);
                 return response.data.equips;
             })
             .then(function (myJson) {
@@ -38,6 +53,7 @@ function SearchEquipBasic() {
     }, []);
 
     function search(rows) {
+
         return rows.filter((row) =>
             searchColumns.some(
                 (column) =>
@@ -49,6 +65,17 @@ function SearchEquipBasic() {
         );
     }
 
+    function handleCheckIn() {
+        axios.post(`https://bgctrack.herokuapp.com/api/checkIn`, { BarcodeID })
+            .then((response) => {
+                window.location.reload();
+            });
+
+    }
+    
+    function handleCleanStorage() {
+        localStorage.setItem("barcode", "")
+    }
     const ScanBarcode = async (e) => {
         e.preventDefault();
         try {
@@ -63,23 +90,52 @@ function SearchEquipBasic() {
         }
     }
 
+
+
     const columns = data[0] && Object.keys(data[0]);
     return (
         <container>
             <Navbar />
-            <div class="form-control">
+            <Form class="row" onSubmit={ScanBarcode}>
+                <div class="mb-1 pr-5">
+                    <BarcodeScannerComponent
+                        width={300}
+                        height={300}
+                        onUpdate={(err, result) => {
+                            if (result) {
+                                const barcodeData = result.text
+                                setBarcodeItem(barcodeData);
+                                // addEntryClick();
+                                localStorage.setItem("barcode", JSON.stringify(barcodeData));
+                                // window.alert("This barcode was detected: " + sessionStorage.getItem("barcode"));
+                            }
+                        }} 
+                    />
+                </div>
+                <div class="mb-2">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <button type="submit" style={{ transform: "scale(1.3)" }} class="btn btn-outline-success btn-lg btn-block">Search using Barcode</button>
+                    </div>
+                </div>
+                <p class="h3" >Detected barcode: {barcode_id}</p>
+            </Form>
+            <div class="form-control" >
                 <button class="mt-3 mb-3 ms-1 btn btn-primary btn-lg btn-block" onClick={() => setIsOpen(true)}>Search Category</button>
                 <input
-                    id="inpData"
-                    name="DATA"
-                    type='text'
-                    placeholder=" Perform action with barcode"
-                    class="form-control"
-                    value={q}
-                    onChange={(e) => { setQ(e.target.value); BarcodeID = e.target.value; }}
-                />
+                        id="inpData"
+                        name="DATA"
+                        type='text'
+                        placeholder="use barcode to check in"
+                        class="form-control"
+                        value={q}
+                        onChange={(e) => { setQ(e.target.value); BarcodeID = e.target.value; }}
+                    />
                 <Datatable data={search(data)} />
+                <div class="mt-5 mb-4 ms-3">
+                    <button onClick={handleCheckIn} style={{ transform: "scale(1.3)" }} type="submit" class="btn btn-success btn-lg btn-block">Check in</button>
+                </div>
             </div>
+
 
 
             <Modal aria-labelledby="contained-modal-title-vcenter" isOpen={modalIsOpen}>
@@ -117,11 +173,13 @@ function SearchEquipBasic() {
 
                         ))}
                 </table>
-                <button class="mt-5 mb-3  ms-5 btn btn-success btn-lg btn-block" style={{ transform: "scale(2)" }} onClick={() => setIsOpen(false)}>Save</button>
+                <button class="mt-5  ms-5 btn btn-success btn-lg btn-block" style={{ transform: "scale(2)" }} onClick={() => setIsOpen(false)}>Save</button>
             </Modal>
+
+
 
         </container>
     );
 }
 
-export default SearchEquipBasic;
+export default SearchEquipPro;

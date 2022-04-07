@@ -6,7 +6,7 @@ import { Navigate } from 'react-router-dom';
 import Pro from "./Admin/SearchUserPro";
 es6.polyfill();
 
-
+//
 //import SearchEquip from "./SearchEquip";
 function SearchUser() {
     return (

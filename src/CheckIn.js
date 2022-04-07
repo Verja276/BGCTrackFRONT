@@ -4,10 +4,10 @@ import es6 from "es6-promise";
 import "isomorphic-fetch";
 import { Navigate } from 'react-router-dom';
 import Basic from "./BasicUser/SearchEquipBasic";
-import Pro from "./notBasic/SearchEquipPro";
+import Pro from "./notBasic/CheckInPro";
 es6.polyfill();
 //
-function SearchEquip() {
+function CheckIn() {
     return (
         (sessionStorage.getItem("user_status") == "a") ? (
             <Pro />
@@ -19,4 +19,4 @@ function SearchEquip() {
     );
 }
 
-export default SearchEquip;
+export default CheckIn;
