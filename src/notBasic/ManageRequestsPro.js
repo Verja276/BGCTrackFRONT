@@ -7,7 +7,7 @@ import {Modal, Button, Row, Col, Form } from 'react-bootstrap';
 //import from datatable folder//
 import Datatable from "../datatable";
 import Navbar from "../components/NavBarPro";
-import {useState, useEffect} from 'react';
+
 
 es6.polyfill();
 var BarcodeID = "";
