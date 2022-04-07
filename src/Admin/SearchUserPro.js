@@ -7,7 +7,6 @@ import Datatable from "../datatable";
 import Navbar from "../components/NavBarPro";
 import Modal from "react-modal";
 import Form from 'react-bootstrap/Form';
-import {useState, useEffect} from 'react';
 es6.polyfill();
 
 Modal.setAppElement("#root");
