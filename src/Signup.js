@@ -1,13 +1,11 @@
 import React from "react";
 import "./App.css";
-import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import background from "./background5.jpg";
 import { Helmet } from "react-helmet";
 import { Navigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
-import axios from 'axios';
 import {useState, useEffect} from 'react';
 
 //import Signup from "./Signup";

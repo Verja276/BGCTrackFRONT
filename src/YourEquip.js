@@ -5,7 +5,6 @@ import "isomorphic-fetch";
 import { Navigate } from 'react-router-dom';
 import Basic from "./BasicUser/YourEquipBasic";
 import axios from 'axios';
-import {useState, useEffect} from 'react';
 
 es6.polyfill();
 //

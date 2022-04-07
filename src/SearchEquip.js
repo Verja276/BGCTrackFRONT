@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"; //STORE DATA
+import React from "react"; //STORE DATA
 import "./App.css";
 import es6 from "es6-promise";
 import "isomorphic-fetch";
