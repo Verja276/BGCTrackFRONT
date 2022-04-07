@@ -33,6 +33,17 @@ function SearchUserPro() {
         if (refToken, accToken) {
             setUser(JSON.parse(refToken, accToken));
         }
+        const currentTime = new Date().getMinutes();
+        const loginTime = sessionStorage.getItem("session-start");
+        const sessionLimit = 20;
+        if (currentTime && loginTime) {
+            if ((currentTime - loginTime) > sessionLimit) {
+                const res = axios.post("https://bgctrack.herokuapp.com/api/logout")
+                setUser(res.data);
+                sessionStorage.clear();
+                window.location.reload();
+            }
+        }
     }, []);
 
 

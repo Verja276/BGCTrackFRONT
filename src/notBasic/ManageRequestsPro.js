@@ -19,7 +19,20 @@ function RequestDetailModal(props) {
     const [endDate, setEndDate] = useState("");
     const [endTime, setEndTime] = useState("");
     const [equipmentGroup, setEquipmentGroup] = useState("");
-
+    
+    useEffect(() => {
+        const currentTime = new Date().getMinutes();
+        const loginTime = sessionStorage.getItem("session-start");
+        const sessionLimit = 20;
+        if (currentTime && loginTime) {
+            if ((currentTime - loginTime) > sessionLimit) {
+                const res = axios.post("https://bgctrack.herokuapp.com/api/logout")
+                setUser(res.data);
+                sessionStorage.clear();
+                window.location.reload();
+            }
+        }
+    })
 
     function formatAMPM(date) {
         var hours = date[0];

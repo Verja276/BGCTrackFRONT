@@ -29,6 +29,17 @@ function SearchEquipPro() {
     React.useEffect(() => {
         const refToken = sessionStorage.getItem("refresh-token"); //get sessionStorage
         const accToken = sessionStorage.getItem("access-token"); //get sessionStorage
+        const currentTime = new Date().getMinutes();
+        const loginTime = sessionStorage.getItem("session-start");
+        const sessionLimit = 20;
+        if (currentTime && loginTime) {
+            if ((currentTime - loginTime) > sessionLimit) {
+                const res = axios.post("https://bgctrack.herokuapp.com/api/logout")
+                setUser(res.data);
+                sessionStorage.clear();
+                window.location.reload();
+            }
+        }
         if (refToken, accToken) {
             console.log("json data: " + JSON.stringify(refToken, accToken));
             setUser(JSON.parse(refToken, accToken));

@@ -19,14 +19,25 @@ function YourEquipBasic() {
     const [user, setUser] = useState(null);
     const [barcode_id, setBarcodeItem] = useState("");
     const [modalIsOpen, setIsOpen] = useState(false);
+ 
     React.useEffect(() => {
         const refToken = sessionStorage.getItem("refresh-token"); //get sessionStorage
         const accToken = sessionStorage.getItem("access-token"); //get sessionStorage
         if (refToken, accToken) {
             setUser(JSON.parse(refToken, accToken));
         }
+        const currentTime = new Date().getMinutes();
+        const loginTime = sessionStorage.getItem("session-start");
+        const sessionLimit = 20;
+        if (currentTime && loginTime) {
+            if ((currentTime - loginTime) > sessionLimit) {
+                const res = axios.post("https://bgctrack.herokuapp.com/api/logout")
+                setUser(res.data);
+                sessionStorage.clear();
+                window.location.reload();
+            }
+        }
     }, []);
-
 
     useEffect(() => {
         var email = sessionStorage.getItem('user_email')

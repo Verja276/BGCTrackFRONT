@@ -14,6 +14,18 @@ const handleLogout = async (e) => {
     }
 };
 function BasicUser() {
+    const [user, setUser] = useState(null);
+    const currentTime = new Date().getMinutes();
+        const loginTime = sessionStorage.getItem("session-start");
+        const sessionLimit = 20;
+        if (currentTime && loginTime) {
+            if ((currentTime - loginTime) > sessionLimit) {
+                const res = axios.post("https://bgctrack.herokuapp.com/api/logout")
+                setUser(res.data);
+                sessionStorage.clear();
+                window.location.reload();
+            }
+        }
     return (
         <div>
             <div className="form3" >
