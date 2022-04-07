@@ -62,6 +62,7 @@ function SignUpEquipPro() {
         if (barcode_id, serial_number, equipment_type, category, project, equipment_status, equipment_group, location) {
             const res = await axios.post("https://bgctrack.herokuapp.com/api/addEquipment", { barcode_id, serial_number, equipment_type, category, project, equipment_status, equipment_group, location }
             );
+            console.log(res);
             setUser(res.data);
             window.alert("sent equipment to database!");
         } else {
@@ -136,7 +137,7 @@ function SignUpEquipPro() {
                         onChange={(e) => setProject(e.target.value)} />
                     <Form.Label className="mt-3">Status</Form.Label>
                     <select id="roles" multiple name="role" onChange={(e) => setEquipmentStatus(e.target.value)} class="form-control">
-                        <option value="Available">Available</option>
+                        <option value="available">Available</option>
                         <option value="Lost">Lost</option>
                         <option value="Retired">Retired</option>
                     </select>

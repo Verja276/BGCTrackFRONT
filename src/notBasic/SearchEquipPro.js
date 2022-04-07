@@ -185,9 +185,8 @@ function SearchEquipPro() {
                                 onChange={(project) => setProject(project.target.value)} />
                             <Form.Label>Update Equipment Status</Form.Label>
                             <select id="roles" multiple name="role" onChange={(status) => setEquipmentStatus(status.target.value)} class="form-control">
-                                <option value="Available">Available</option>
+                                <option value="available">Available</option>
                                 <option value="Lost">Lost</option>
-                                <option value="Checked out">Checked out</option>
                                 <option value="Retired">Retired</option>
                             </select>
                             <Form.Label>Update Equipment Group</Form.Label>
