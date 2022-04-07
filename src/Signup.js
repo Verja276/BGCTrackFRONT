@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import background from "./background5.jpg";
+// import background from "./background5.jpg";
 import { Helmet } from "react-helmet";
 import { Navigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
