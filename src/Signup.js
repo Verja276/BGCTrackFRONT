@@ -7,6 +7,7 @@ import { Helmet } from "react-helmet";
 import { Navigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import {useState, useEffect} from 'react';
+import Navbar from "../components/NavBarPro";
 
 //import Signup from "./Signup";
 function Signup() {
@@ -75,6 +76,7 @@ function Signup() {
 
 
     return (
+        <Navbar />
         (sessionStorage.getItem("user_status") == "a") ? (
             <div className="container" >
                 <Helmet><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" ></meta></Helmet>
