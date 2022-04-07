@@ -1,6 +1,5 @@
 import React from "react";
 import "../App.css";
-import background from "../background5.jpg";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import axios from 'axios';
@@ -43,7 +42,7 @@ function Admin() {
     };
     
     return (
-        <div className="background" style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }} >
+        <div className="background" >
             <Helmet><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" ></meta></Helmet>
             <div className="form1" >
             <Link to="/SearchEquip" class="btn btn-primary btn-lg col-12 mb-4">Search equipment</Link>
