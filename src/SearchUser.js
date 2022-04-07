@@ -4,6 +4,8 @@ import es6 from "es6-promise";
 import "isomorphic-fetch";
 import { Navigate } from 'react-router-dom';
 import Pro from "./Admin/SearchUserPro";
+import axios from 'axios';
+import {useState, useEffect} from 'react';
 es6.polyfill();
 
 //

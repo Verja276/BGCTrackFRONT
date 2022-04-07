@@ -4,6 +4,8 @@ import es6 from "es6-promise";
 import "isomorphic-fetch";
 import { Navigate } from 'react-router-dom';
 import Basic from "./BasicUser/RequestEquipBasic";
+import axios from 'axios';
+import {useState, useEffect} from 'react';
 es6.polyfill();
 //
 function RequestEquip() {

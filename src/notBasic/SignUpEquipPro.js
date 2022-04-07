@@ -6,6 +6,7 @@ import Navbar from "../components/NavBarPro";
 import BarcodeScannerComponent from "react-webcam-barcode-scanner";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
+import {useState, useEffect} from 'react';
 
 //
 //import Signup from "./Signup";

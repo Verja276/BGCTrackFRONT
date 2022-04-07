@@ -7,6 +7,7 @@ import background from "./background5.jpg";
 import BarcodeScannerComponent from "react-webcam-barcode-scanner";
 import { Navigate } from 'react-router-dom';
 import Pro from "./notBasic/SignUpEquipPro";
+import {useState, useEffect} from 'react';
 //import Signup from "./Signup";
 //
 function SignUpEquip() {

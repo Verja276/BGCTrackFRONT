@@ -12,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
 import Modal from "react-modal";
 import Navbar from "../components/NavBarPro";
+import {useState, useEffect} from 'react';
 es6.polyfill();
 var BarcodeID = "";
 

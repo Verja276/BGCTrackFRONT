@@ -7,6 +7,8 @@ import "isomorphic-fetch";
 import Datatable from "../datatable";
 import Navbar from "../components/NavBarPro";
 import Modal from "react-modal";
+import axios from 'axios';
+import {useState, useEffect} from 'react';
 
 es6.polyfill();
 var BarcodeID = "";

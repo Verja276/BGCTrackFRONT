@@ -5,6 +5,8 @@ import "isomorphic-fetch";
 import { Navigate } from 'react-router-dom';
 import Basic from "./BasicUser/SearchEquipBasic";
 import Pro from "./notBasic/CheckInPro";
+import axios from 'axios';
+import {useState, useEffect} from 'react';
 es6.polyfill();
 //
 function CheckIn() {
