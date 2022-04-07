@@ -1,6 +1,5 @@
 import React from "react";
 import "../App.css";//
-import { useState } from "react";
 import { Link } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import BarcodeScannerComponent from "react-webcam-barcode-scanner";
