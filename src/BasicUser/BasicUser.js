@@ -30,7 +30,7 @@ function BasicUser() {
         }
     return (
         <div>
-            <div className="form3" >
+            <div className="form1" >
                 <Link to="/SearchEquip" class="btn btn-primary btn-lg col-12 mb-4">Search equipment</Link>
                 <Link to="/RequestEquip" class="btn btn-warning btn-lg col-12 mb-4">Request equipment</Link>
                 <Link to="/YourEquip" class="btn btn-dark btn-lg col-12 mb-4">Your Equipments</Link>
