@@ -43,7 +43,7 @@ function AdminHome() {
 
     return (
         <div className="body" >
-            <div className="form3" >
+            <div className="form1" >
                 <Link to="/SearchEquip" class="btn btn-primary btn-lg col-12 mb-4">Search equipment</Link>
                 <Link to="/SearchUser" class="btn btn-primary btn-lg col-12 mb-4">Search Users</Link>
                 <Link to="/BarcodeScan"  class="btn btn-success btn-lg col-12  mb-4" >Add equipment</Link>
