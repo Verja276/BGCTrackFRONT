@@ -80,7 +80,7 @@ function Signup() {
         (sessionStorage.getItem("user_status") == "a") ? (
             <div className="container" >
                 <Helmet><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" ></meta></Helmet>
-                <div className="background" style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }} >
+                {/* <div className="background" style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }} > */}
                 <Navbar />
                     <Form class="align-items-center" onSubmit={handleSignUP}>
                         <Form.Group class="form-control" >
@@ -126,7 +126,7 @@ function Signup() {
                         </Form.Group>
                     </Form>
                 </div>
-            </div>
+            // </div>
         ) : (<Navigate to="/" replace={true} />)
     );
 }
