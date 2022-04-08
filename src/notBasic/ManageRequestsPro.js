@@ -81,9 +81,10 @@ function RequestDetailModal(props) {
                   day = '0' + day;
                 }
                 var mounth = now.getMonth();
-//                if(mounth.toString().length == 1){
-//                  mounth = '0' + mounth;
-//                }
+                mounth = mounth + 1;
+                if(mounth.toString().length == 1){
+                  mounth = '0' + mounth;
+                }
 
                 var hour = now.getHours();
                 if(hour.toString().length == 1){
