@@ -70,9 +70,38 @@ function RequestDetailModal(props) {
             var end_date = endDateTemp[2] + "/" + endDateTemp[1] + "/" + endDateTemp[0] + ", " + endTimeTemp;
 
             var end_date_compare = endDate + ',' + endTime;
+
+
+
+
+                var now = new Date();
+                var day = now.getDate().toString();
+
+                if(day.length == 1){
+                  day = '0' + day;
+                }
+                var mounth = now.getMonth().toString() ;
+                if(mounth.length == 1){
+                  mounth = '0' + mounth;
+                }
+
+                var hour = now.getHours().toString();
+                if(hour.length == 1){
+                  hour = '0' + hour;
+
+                }
+                var minutes = now.getMinutes().toString();
+                if(minutes.length == 1){
+                  minutes = '0' + minutes;
+                }
+
+                var current = now.getFullYear() + '-' + mounth + '-' +
+                day + ',' + hour + ':' + minutes;
+
+                console.log(current)
             axios.post(`https://bgctrack.herokuapp.com/api/AcceptRequestEquip`, { barcode_id, initial_date, end_date, equipmentGroup, end_date_compare })
                 .then((response) => {
-                    window.location.reload();
+//                    window.location.reload();
                     return;
                 });
 
