@@ -6,37 +6,6 @@ import axios from 'axios';
 import {useState, useEffect} from 'react';
 //
 
-React.useEffect(() => {
-        const refToken = sessionStorage.getItem("refresh-token"); //get sessionStorage
-        const accToken = sessionStorage.getItem("access-token"); //get sessionStorage
-        if (refToken, accToken) {
-            console.log("json data: " + JSON.stringify(refToken, accToken));
-            setUser(JSON.parse(refToken, accToken));
-            console.log(refToken);
-            console.log(accToken);
-        }
-        const currentTime = new Date().getMinutes();
-        const loginTime = sessionStorage.getItem("session-start");
-        const sessionLimit = 20;
-        if (currentTime && loginTime) {
-            if ((currentTime - loginTime) > sessionLimit) {
-                const res = axios.post("https://bgctrack.herokuapp.com/api/logout")
-                setUser(res.data);
-                sessionStorage.clear();
-                window.location.reload();
-            }
-        }
-        const checkForOverdueEquipment = async (e) => {
-                    const current_date = new Date();
-                    try {
-                    axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment" ,{current_date});
-                    }
-                    catch (err) {
-                       console.log(err);
-                    }
-
-                }
-    }, []);
 const handleLogout = async (e) => {
     try {
         e.preventDefault();
