@@ -5,7 +5,7 @@ import Navbar from "../components/NavBarPro";
 import BarcodeScannerComponent from "react-webcam-barcode-scanner";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 //
 //import Signup from "./Signup";
@@ -40,17 +40,7 @@ function SignUpEquipPro() {
                 window.location.reload();
             }
         }
-
-        const checkForOverdueEquipment = async (e) => {
-                const current_date = new Date();
-                try {
-                axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment" ,{current_date});
-                }
-                catch (err) {
-                   console.log(err);
-                }
-
-            }
+        checkForOverdueEquipment();
     }, []);
 
 
@@ -81,7 +71,16 @@ function SignUpEquipPro() {
         }
 
     }
+    const checkForOverdueEquipment = async (e) => {
+        const current_date = new Date();
+        try {
+            axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment", { current_date });
+        }
+        catch (err) {
+            console.log(err);
+        }
 
+    }
 
 
 
@@ -176,7 +175,7 @@ function SignUpEquipPro() {
                     </div>
                 </Form.Group>
             </Form>
-            
+
         </container>
     );
 }

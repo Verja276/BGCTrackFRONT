@@ -59,7 +59,7 @@ function BarcodeScan() {
         e.preventDefault();
         if (barcode_id, serial_number, equipment_type, category, project, equipment_status, equipment_group, email, location) {
             const borrower = email;
-            const res = await axios.post("https://bgctrack.herokuapp.com/api/addEquipment", {barcode_id, serial_number, equipment_type, category, project, equipment_status, equipment_group, borrower, location});
+            const res = await axios.post("https://bgctrack.herokuapp.com/api/addEquipment", { barcode_id, serial_number, equipment_type, category, project, equipment_status, equipment_group, borrower, location });
             //const res = await axios.post("/addEquipment",{barcode_id});
             setUser(res.data);
             window.alert("sent equipment to database!");
@@ -143,14 +143,14 @@ function BarcodeScan() {
                         </br>
                     </form>
                     <ul className="previousSearch">
-                            {theArray.map((barcode_id, i) => (
-                                <Search
-                                    barcode_id={barcode_id}
-                                    // Prevent duplicate keys by appending index:
-                                    key={barcode_id + i}
-                                />
-                            ))}
-                        </ul>
+                        {theArray.map((barcode_id, i) => (
+                            <Search
+                                barcode_id={barcode_id}
+                                // Prevent duplicate keys by appending index:
+                                key={barcode_id + i}
+                            />
+                        ))}
+                    </ul>
 
                     <br>
                     </br><br>
@@ -166,52 +166,52 @@ function BarcodeScan() {
                     <br></br>
                     <br></br>
 
-        <form onSubmit={inputBarcode}>        
-        <input
-            type="text"
-            value={barcode_id}
-            onChange={(barcode_id) => setBarcodeItem(barcode_id.target.value)} />
-        <input
-            type="text"
-            placeholder="serial_number"
-            value={serial_number}
-            onChange={(e) => setSerialNumber(e.target.value)} />
-        <input
-            type="text"
-            placeholder="equipment_type"
-            onChange={(e) => setEquipmentType(e.target.value)} />
-        <input
-            type="text"
-            placeholder="category"
-            onChange={(e) => setCategory(e.target.value)} />
-        <input
-            type="text"
-            placeholder="project"
-            onChange={(e) => setProject(e.target.value)} />
-        <input
-            type="text"
-            placeholder="equipment_status"
-            onChange={(e) => setEquipmentStatus(e.target.value)} />
-        <input
-            type="text"
-            placeholder="equipment_group"
-            onChange={(e) => setEquipmentGroup(e.target.value)} />
-        <input
-            type="text"
-            placeholder="borrower"
-            onChange={(e) => setEmail(e.target.value)} />
-        <input
-        type="text"
-        placeholder="location"
-         onChange={(e) => setLocation(e.target.value)} />
+                    <form onSubmit={inputBarcode}>
+                        <input
+                            type="text"
+                            value={barcode_id}
+                            onChange={(barcode_id) => setBarcodeItem(barcode_id.target.value)} />
+                        <input
+                            type="text"
+                            placeholder="serial_number"
+                            value={serial_number}
+                            onChange={(e) => setSerialNumber(e.target.value)} />
+                        <input
+                            type="text"
+                            placeholder="equipment_type"
+                            onChange={(e) => setEquipmentType(e.target.value)} />
+                        <input
+                            type="text"
+                            placeholder="category"
+                            onChange={(e) => setCategory(e.target.value)} />
+                        <input
+                            type="text"
+                            placeholder="project"
+                            onChange={(e) => setProject(e.target.value)} />
+                        <input
+                            type="text"
+                            placeholder="equipment_status"
+                            onChange={(e) => setEquipmentStatus(e.target.value)} />
+                        <input
+                            type="text"
+                            placeholder="equipment_group"
+                            onChange={(e) => setEquipmentGroup(e.target.value)} />
+                        <input
+                            type="text"
+                            placeholder="borrower"
+                            onChange={(e) => setEmail(e.target.value)} />
+                        <input
+                            type="text"
+                            placeholder="location"
+                            onChange={(e) => setLocation(e.target.value)} />
 
-        <button type="submit" className="submitButton" >Submit BARCODE</button>
-    </form>                        
-    </div>
-    </div>
-</div>
-);
+                        <button type="submit" className="submitButton" >Submit BARCODE</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    );
 }
 
 
-                export default BarcodeScan;
+export default BarcodeScan;

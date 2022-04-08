@@ -13,11 +13,11 @@ var BarcodeID = "";
 function SearchEquipBasic() {
     const [data, setData] = useState([]);
     const [q, setQ] = useState(""); //query filter
-    const [searchColumns, setSearchColumns] = useState([ "category"]);
+    const [searchColumns, setSearchColumns] = useState(["category"]);
     const [user, setUser] = useState(null);
     const [barcode_id, setBarcodeItem] = useState("");
     const [modalIsOpen, setIsOpen] = useState(false);
-   
+
     React.useEffect(() => {
         const refToken = sessionStorage.getItem("refresh-token"); //get sessionStorage
         const accToken = sessionStorage.getItem("access-token"); //get sessionStorage
@@ -35,17 +35,7 @@ function SearchEquipBasic() {
                 window.location.reload();
             }
         }
-
-        const checkForOverdueEquipment = async (e) => {
-                    const current_date = new Date();
-                    try {
-                    axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment" ,{current_date});
-                    }
-                    catch (err) {
-                       console.log(err);
-                    }
-
-                }
+        checkForOverdueEquipment();
     }, []);
 
 
@@ -90,15 +80,26 @@ function SearchEquipBasic() {
     const columns = data[0] && Object.keys(data[0]);
 
     const checkForOverdueEquipment = async (e) => {
-            const current_date = new Date();
-            try {
-            axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment" ,{current_date});
-            }
-            catch (err) {
-               console.log(err);
-            }
-
+        const current_date = new Date();
+        try {
+            axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment", { current_date });
         }
+        catch (err) {
+            console.log(err);
+        }
+
+    }
+
+    const checkForOverdueEquipment = async (e) => {
+        const current_date = new Date();
+        try {
+            axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment", { current_date });
+        }
+        catch (err) {
+            console.log(err);
+        }
+
+    }
 
     return (
         <container>

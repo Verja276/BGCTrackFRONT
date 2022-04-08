@@ -43,16 +43,7 @@ function RequestEquipBasic() {
                 window.location.reload();
             }
         }
-        const checkForOverdueEquipment = async (e) => {
-                    const current_date = new Date();
-                    try {
-                    axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment" ,{current_date});
-                    }
-                    catch (err) {
-                       console.log(err);
-                    }
-
-                }
+        checkForOverdueEquipment();
     }, []);
     function handleRequest() {
         var email = sessionStorage.getItem("user_email")
@@ -63,12 +54,12 @@ function RequestEquipBasic() {
         if (q == '') {
             window.alert("fill in the barcode of the wanted equipment")
         }
-        else{
-                axios.post(`https://bgctrack.herokuapp.com/api/RequestEquip`, { email, barcode_id, status })
-                    .then((response) => {
-                        window.location.reload();
-                        return;
-                    });
+        else {
+            axios.post(`https://bgctrack.herokuapp.com/api/RequestEquip`, { email, barcode_id, status })
+                .then((response) => {
+                    window.location.reload();
+                    return;
+                });
         }
     }
 
@@ -81,14 +72,14 @@ function RequestEquipBasic() {
         if (q == '') {
             window.alert("fill in the barcode")
         }
-        else{
+        else {
 
-                        axios.post(`https://bgctrack.herokuapp.com/api/CancelRequestEquip`, { email, barcode_id })
+            axios.post(`https://bgctrack.herokuapp.com/api/CancelRequestEquip`, { email, barcode_id })
 
-                    .then((response) => {
-                        window.location.reload();
-                        return;
-                    });
+                .then((response) => {
+                    window.location.reload();
+                    return;
+                });
 
         }
 
@@ -140,15 +131,15 @@ function RequestEquipBasic() {
     const columns = data[0] && Object.keys(data[0]);
 
     const checkForOverdueEquipment = async (e) => {
-            const current_date = new Date();
-            try {
-            axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment" ,{current_date});
-            }
-            catch (err) {
-               console.log(err);
-            }
-
+        const current_date = new Date();
+        try {
+            axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment", { current_date });
         }
+        catch (err) {
+            console.log(err);
+        }
+
+    }
 
     return (
         <container>

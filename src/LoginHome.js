@@ -9,7 +9,7 @@ import EquipmentManager from "./EquipmentManager/EquipmentManager";
 import background from "./background5.jpg";
 import { Helmet } from "react-helmet";
 import photo from "./BGCLogo-_Hex_004B91.svg";
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 
 //function setStat (param)
@@ -45,12 +45,12 @@ function LoginHome() {
     const checkForOverdueEquipment = async (e) => {
         const current_date = new Date();
         try {
-        axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment" ,{current_date});
+            axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment", { current_date });
         }
         catch (err) {
-           console.log(err);
+            console.log(err);
         }
-        
+
     }
 
     const refreshToken = async () => {

@@ -3,7 +3,7 @@ import axios from "axios";
 import es6 from "es6-promise";
 import "isomorphic-fetch";
 import Modal1 from "react-modal";
-import {Modal, Button, Row, Col, Form } from 'react-bootstrap';
+import { Modal, Button, Row, Col, Form } from 'react-bootstrap';
 //import from datatable folder//
 import Datatable from "../datatable";
 import Navbar from "../components/NavBarPro";
@@ -21,7 +21,7 @@ function RequestDetailModal(props) {
     const [endTime, setEndTime] = useState("");
     const [user, setUser] = useState("");
     const [equipmentGroup, setEquipmentGroup] = useState("");
-    
+
     useEffect(() => {
         const currentTime = new Date().getMinutes();
         const loginTime = sessionStorage.getItem("session-start");
@@ -35,17 +35,8 @@ function RequestDetailModal(props) {
             }
         }
 
-           const checkForOverdueEquipment = async (e) => {
-                    const current_date = new Date();
-                    try {
-                    axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment" ,{current_date});
-                    }
-                    catch (err) {
-                       console.log(err);
-                    }
 
-                }
-
+        checkForOverdueEquipment();
     })
 
     function formatAMPM(date) {
@@ -64,20 +55,20 @@ function RequestDetailModal(props) {
         if (startTime === "" || startDate === "" || endTime === "" || endDate === "" || equipmentGroup === "") {
             window.alert("fill out the form!")
         }
-        var present_date =  new Date();
-        if(present_date > startDate || startDate > endDate){
+        var present_date = new Date();
+        if (present_date > startDate || startDate > endDate) {
             window.alert("Invalid Timing")
         }
-        else{
+        else {
             var startDateTemp = startDate.split('-');
             var startTimeTemp = formatAMPM(startTime.split(':'));
-    
+
             var initial_date = startDateTemp[2] + "/" + startDateTemp[1] + "/" + startDateTemp[0] + ", " + startTimeTemp;
-    
+
             var endDateTemp = endDate.split('-');
             var endTimeTemp = formatAMPM(endTime.split(':'));
             var end_date = endDateTemp[2] + "/" + endDateTemp[1] + "/" + endDateTemp[0] + ", " + endTimeTemp;
-    
+
             var end_date_compare = endDate + ',' + endTime;
             axios.post(`https://bgctrack.herokuapp.com/api/AcceptRequestEquip`, { barcode_id, initial_date, end_date, equipmentGroup, end_date_compare })
                 .then((response) => {
@@ -85,6 +76,16 @@ function RequestDetailModal(props) {
                     return;
                 });
 
+        }
+
+    }
+    const checkForOverdueEquipment = async (e) => {
+        const current_date = new Date();
+        try {
+            axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment", { current_date });
+        }
+        catch (err) {
+            console.log(err);
         }
 
     }
@@ -248,8 +249,8 @@ function ManageRequestsPro() {
                 <div class="form-control">
                     <button class="mt-3 mb-3 ms-1 btn btn-primary btn-lg btn-block" onClick={() => {
                         setIsOpen(true)
-                        console.log(modalIsOpen) 
-                        }}>Search Category</button>
+                        console.log(modalIsOpen)
+                    }}>Search Category</button>
                     <h3 class="mb-2">Requests</h3>
                     <input
                         id="inpData"

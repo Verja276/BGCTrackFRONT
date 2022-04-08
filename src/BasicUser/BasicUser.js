@@ -1,9 +1,9 @@
 import React from "react";
 import "../App.css";
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 //
 
 const handleLogout = async (e) => {
@@ -18,8 +18,17 @@ const handleLogout = async (e) => {
 function BasicUser() {
     const [user, setUser] = useState(null);
     const currentTime = new Date().getMinutes();
-        const loginTime = sessionStorage.getItem("session-start");
-        const sessionLimit = 20;
+    const loginTime = sessionStorage.getItem("session-start");
+    const sessionLimit = 20;
+    React.useEffect(() => {
+        const refToken = sessionStorage.getItem("refresh-token"); //get sessionStorage
+        const accToken = sessionStorage.getItem("access-token"); //get sessionStorage
+        if (refToken, accToken) {
+            console.log("json data: " + JSON.stringify(refToken, accToken));
+            setUser(JSON.parse(refToken, accToken));
+            console.log(refToken);
+            console.log(accToken);
+        }
         if (currentTime && loginTime) {
             if ((currentTime - loginTime) > sessionLimit) {
                 const res = axios.post("https://bgctrack.herokuapp.com/api/logout")
@@ -28,6 +37,20 @@ function BasicUser() {
                 window.location.reload();
             }
         }
+        checkForOverdueEquipment();
+
+    }, []);
+
+    const checkForOverdueEquipment = async (e) => {
+        const current_date = new Date();
+        try {
+            axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment", { current_date });
+        }
+        catch (err) {
+            console.log(err);
+        }
+
+    }
 
 
 

@@ -9,15 +9,15 @@ import axios from 'axios';
 es6.polyfill();
 
 function CheckIn() {
-   
+
     return (
         (sessionStorage.getItem("user_status") == "a") ? (
             <Pro />
-        ) : ((sessionStorage.getItem("user_status") == "e") ? ( <Pro />) : 
-        
-        (((sessionStorage.getItem("user_status") != null) ? (<Basic />)
-            : (<Navigate to="/" replace={true} />)
-        )))
+        ) : ((sessionStorage.getItem("user_status") == "e") ? (<Pro />) :
+
+            (((sessionStorage.getItem("user_status") != null) ? (<Basic />)
+                : (<Navigate to="/" replace={true} />)
+            )))
     );
 }
 

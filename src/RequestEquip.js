@@ -8,7 +8,7 @@ import axios from 'axios';
 es6.polyfill();
 //
 function RequestEquip() {
-  
+
     return (
 
         (((sessionStorage.getItem("user_status") != null) ? (<Basic />)

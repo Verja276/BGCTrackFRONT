@@ -15,11 +15,11 @@ var BarcodeID = "";
 function YourEquipBasic() {
     const [data, setData] = useState([]);
     const [q, setQ] = useState(""); //query filter
-    const [searchColumns, setSearchColumns] = useState([ "end_date"]);
+    const [searchColumns, setSearchColumns] = useState(["end_date"]);
     const [user, setUser] = useState(null);
     const [barcode_id, setBarcodeItem] = useState("");
     const [modalIsOpen, setIsOpen] = useState(false);
- 
+
     React.useEffect(() => {
         const refToken = sessionStorage.getItem("refresh-token"); //get sessionStorage
         const accToken = sessionStorage.getItem("access-token"); //get sessionStorage
@@ -38,16 +38,7 @@ function YourEquipBasic() {
             }
         }
 
-        const checkForOverdueEquipment = async (e) => {
-                    const current_date = new Date();
-                    try {
-                    axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment" ,{current_date});
-                    }
-                    catch (err) {
-                       console.log(err);
-                    }
-
-                }
+        checkForOverdueEquipment();
     }, []);
 
     useEffect(() => {
@@ -90,7 +81,16 @@ function YourEquipBasic() {
 
     const columns = data[0] && Object.keys(data[0]);
 
+    const checkForOverdueEquipment = async (e) => {
+        const current_date = new Date();
+        try {
+            axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment", { current_date });
+        }
+        catch (err) {
+            console.log(err);
+        }
 
+    }
 
     return (
         <container>

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { Navigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from "./components/NavBarPro";
 
 //import Signup from "./Signup";
@@ -22,29 +22,19 @@ function Signup() {
         if (refToken, accToken) {
             setUser(JSON.parse(refToken, accToken));
         }
-        
-            const currentTime = new Date().getMinutes();
-            const loginTime = sessionStorage.getItem("session-start");
-            const sessionLimit = 20;
-            if (currentTime && loginTime) {
-                if ((currentTime - loginTime) > sessionLimit) {
-                    const res = axios.post("https://bgctrack.herokuapp.com/api/logout")
-                    setUser(res.data);
-                    sessionStorage.clear();
-                    window.location.reload();
-                }
+
+        const currentTime = new Date().getMinutes();
+        const loginTime = sessionStorage.getItem("session-start");
+        const sessionLimit = 20;
+        if (currentTime && loginTime) {
+            if ((currentTime - loginTime) > sessionLimit) {
+                const res = axios.post("https://bgctrack.herokuapp.com/api/logout")
+                setUser(res.data);
+                sessionStorage.clear();
+                window.location.reload();
             }
-
-             const checkForOverdueEquipment = async (e) => {
-                        const current_date = new Date();
-                        try {
-                        axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment" ,{current_date});
-                        }
-                        catch (err) {
-                           console.log(err);
-                        }
-
-                    }
+        }
+        checkForOverdueEquipment();
     }, []);
 
 
@@ -87,56 +77,56 @@ function Signup() {
 
 
     return (
-        
+
         (sessionStorage.getItem("user_status") == "a") ? (
             <div className="container" >
                 <Helmet><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" ></meta></Helmet>
                 {/* <div className="background" style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }} > */}
                 <Navbar />
-                    <Form class="align-items-center" onSubmit={handleSignUP}>
-                        <Form.Group class="form-control" >
-                            <Form.Label>Name</Form.Label>
-                            <input
-                                type="text"
-                                placeholder="name"
-                                onChange={(e) => setName(e.target.value)}
-                                class="form-control"
-                            />
-                            <Form.Label>Email</Form.Label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                placeholder="email"
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                            <Form.Label>Password</Form.Label>
-                            <input
-                                class="form-control"
-                                type="password"
-                                placeholder="password"
-                                onChange={(e) => setPassword(e.target.value)}/>
-                            <Form.Label>Location</Form.Label>
-                            <select id="sel1" multiple name="role" class="form-control" onChange={(e) => setStatus(e.target.value)}>
-                                <option value="a">Admin</option>
-                                <option value="b">Basic</option>
-                                <option value="e">Equipment manager</option>
-                            </select>
-                            <div class="mb-1 mt-3">
-                                <div class="d-flex justify-content-center align-items-center">
-                                    <button type="submit" class="btn btn-outline-success btn-lg btn-block">Add User</button>
+                <Form class="align-items-center" onSubmit={handleSignUP}>
+                    <Form.Group class="form-control" >
+                        <Form.Label>Name</Form.Label>
+                        <input
+                            type="text"
+                            placeholder="name"
+                            onChange={(e) => setName(e.target.value)}
+                            class="form-control"
+                        />
+                        <Form.Label>Email</Form.Label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            placeholder="email"
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <Form.Label>Password</Form.Label>
+                        <input
+                            class="form-control"
+                            type="password"
+                            placeholder="password"
+                            onChange={(e) => setPassword(e.target.value)} />
+                        <Form.Label>Location</Form.Label>
+                        <select id="sel1" multiple name="role" class="form-control" onChange={(e) => setStatus(e.target.value)}>
+                            <option value="a">Admin</option>
+                            <option value="b">Basic</option>
+                            <option value="e">Equipment manager</option>
+                        </select>
+                        <div class="mb-1 mt-3">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <button type="submit" class="btn btn-outline-success btn-lg btn-block">Add User</button>
+                            </div>
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <div class="row">
+                                    <Link to="/" class="btn btn-outline-danger btn-lg btn-block"> Go back </Link>
                                 </div>
                             </div>
-                            <div class="mb-3 mt-3">
-                                <div class="d-flex justify-content-center align-items-center">
-                                    <div class="row">
-                                        <Link to="/" class="btn btn-outline-danger btn-lg btn-block"> Go back </Link>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
 
-                        </Form.Group>
-                    </Form>
-                </div>
+                    </Form.Group>
+                </Form>
+            </div>
             // </div>
         ) : (<Navigate to="/" replace={true} />)
     );

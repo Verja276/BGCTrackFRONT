@@ -13,7 +13,7 @@ function YourEquip() {
     return (
         (sessionStorage.getItem("user_status") != "") ? (
             <Basic />
-        ) : (<Navigate to="/" replace={true} />) 
+        ) : (<Navigate to="/" replace={true} />)
     );
 }
 

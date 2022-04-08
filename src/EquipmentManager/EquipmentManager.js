@@ -3,7 +3,7 @@ import "../App.css";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import axios from 'axios';
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 //
 function Admin() {
@@ -28,16 +28,7 @@ function Admin() {
             }
         }
 
-           const checkForOverdueEquipment = async (e) => {
-                    const current_date = new Date();
-                    try {
-                    axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment" ,{current_date});
-                    }
-                    catch (err) {
-                       console.log(err);
-                    }
-
-                }
+        checkForOverdueEquipment();
     }, []);
 
 
@@ -52,15 +43,24 @@ function Admin() {
         }
     };
 
-    
+    const checkForOverdueEquipment = async (e) => {
+        const current_date = new Date();
+        try {
+            axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment", { current_date });
+        }
+        catch (err) {
+            console.log(err);
+        }
+
+    }
     return (
         <div className="background" >
             <Helmet><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" ></meta></Helmet>
             <div className="form1" >
-            <Link to="/SearchEquip" class="btn btn-primary btn-lg col-12 mb-4">Search equipment</Link>
-                <Link to="/BarcodeScan"  class="btn btn-success btn-lg col-12  mb-4" >Add equipment</Link>
+                <Link to="/SearchEquip" class="btn btn-primary btn-lg col-12 mb-4">Search equipment</Link>
+                <Link to="/BarcodeScan" class="btn btn-success btn-lg col-12  mb-4" >Add equipment</Link>
                 <Link to="/RequestEquip" class="btn btn-dark btn-lg col-12 mb-4">Request equipment</Link>
-                <Link to="/manageRequests"  class="btn btn-dark btn-lg col-12  mb-4" >Check Out</Link>
+                <Link to="/manageRequests" class="btn btn-dark btn-lg col-12  mb-4" >Check Out</Link>
                 <Link to="/CheckIn" class="btn btn-dark btn-lg col-12 mb-4">Check In</Link>
                 <Link to="/YourEquip" class="btn btn-dark btn-lg col-12 mb-4">Your Equipments</Link>
                 <form className="mb-2" onSubmit={handleLogout}>

@@ -5,7 +5,7 @@ import "isomorphic-fetch";
 import { Navigate } from 'react-router-dom';
 import Pro from "./Admin/SearchUserPro";
 import axios from 'axios';
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 es6.polyfill();
 
 //
@@ -13,7 +13,7 @@ es6.polyfill();
 function SearchUser() {
 
     return (
-        (sessionStorage.getItem("user_status") == "a") ? ((<Pro />) 
+        (sessionStorage.getItem("user_status") == "a") ? ((<Pro />)
         ) : (<Navigate to="/" replace={true} />)
     );
 }

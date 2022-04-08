@@ -48,16 +48,7 @@ function SearchEquipPro() {
             console.log(accToken);
         }
 
-         const checkForOverdueEquipment = async (e) => {
-                    const current_date = new Date();
-                    try {
-                    axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment" ,{current_date});
-                    }
-                    catch (err) {
-                       console.log(err);
-                    }
-
-                }
+        checkForOverdueEquipment();
     }, []);
 
 
@@ -95,7 +86,7 @@ function SearchEquipPro() {
             });
 
     }
-    
+
     function handleCleanStorage() {
         localStorage.setItem("barcode", "")
     }
@@ -117,7 +108,16 @@ function SearchEquipPro() {
 
     const columns = data[0] && Object.keys(data[0]);
 
+    const checkForOverdueEquipment = async (e) => {
+        const current_date = new Date();
+        try {
+            axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment", { current_date });
+        }
+        catch (err) {
+            console.log(err);
+        }
 
+    }
 
     return (
         <container>
@@ -135,7 +135,7 @@ function SearchEquipPro() {
                                 localStorage.setItem("barcode", JSON.stringify(barcodeData));
                                 // window.alert("This barcode was detected: " + sessionStorage.getItem("barcode"));
                             }
-                        }} 
+                        }}
                     />
                 </div>
                 <div class="mb-2">
@@ -148,14 +148,14 @@ function SearchEquipPro() {
             <div class="form-control" >
                 <button class="mt-3 mb-3 ms-1 btn btn-primary btn-lg btn-block" onClick={() => setIsOpen(true)}>Search Category</button>
                 <input
-                        id="inpData"
-                        name="DATA"
-                        type='text'
-                        placeholder="use barcode to check in"
-                        class="form-control"
-                        value={q}
-                        onChange={(e) => { setQ(e.target.value); BarcodeID = e.target.value; }}
-                    />
+                    id="inpData"
+                    name="DATA"
+                    type='text'
+                    placeholder="use barcode to check in"
+                    class="form-control"
+                    value={q}
+                    onChange={(e) => { setQ(e.target.value); BarcodeID = e.target.value; }}
+                />
                 <Datatable data={search(data)} />
                 <div class="mt-5 mb-4 ms-3">
                     <button onClick={handleCheckIn} style={{ transform: "scale(1.3)" }} type="submit" class="btn btn-success btn-lg btn-block">Check in</button>
