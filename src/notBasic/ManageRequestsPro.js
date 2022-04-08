@@ -80,8 +80,8 @@ function RequestDetailModal(props) {
                 if(day.length == 1){
                   day = '0' + day;
                 }
-                var mounth = now.getMonth();
-                mounth = mounth + 1;
+                var mounth = now.getMonth()+ 1;
+
                 if(mounth.toString().length == 1){
                   mounth = '0' + mounth;
                 }
