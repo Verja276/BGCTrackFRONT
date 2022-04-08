@@ -46,7 +46,7 @@ function RequestDetailModal(props) {
         hours = hours % 12;
         hours = hours ? hours : 12; // the hour '0' should be '12'
         minutes = minutes < 10 ? '0' + minutes : minutes;
-        var strTime = hours + ':' + minutes + ' ' + ampm;
+        var strTime = hours + ':' + minutes + ':00'+ ' ' + ampm;
         return strTime;
     }
     function HandleCheckOut() {
@@ -73,33 +73,6 @@ function RequestDetailModal(props) {
 
 
 
-
-                var now = new Date();
-                var day = now.getDate().toString();
-
-                if(day.length == 1){
-                  day = '0' + day;
-                }
-                var mounth = now.getMonth()+ 1;
-
-                if(mounth.toString().length == 1){
-                  mounth = '0' + mounth;
-                }
-
-                var hour = now.getHours();
-                if(hour.toString().length == 1){
-                  hour = '0' + hour;
-
-                }
-                var minutes = now.getMinutes().toString();
-                if(minutes.length == 1){
-                  minutes = '0' + minutes;
-                }
-
-                var current = now.getFullYear() + '-' + mounth + '-' +
-                day + ',' + hour + ':' + minutes;
-
-                console.log(current)
             axios.post(`https://bgctrack.herokuapp.com/api/AcceptRequestEquip`, { barcode_id, initial_date, end_date, equipmentGroup, end_date_compare })
                 .then((response) => {
 //                    window.location.reload();
