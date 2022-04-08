@@ -37,6 +37,17 @@ function YourEquipBasic() {
                 window.location.reload();
             }
         }
+
+        const checkForOverdueEquipment = async (e) => {
+                    const current_date = new Date();
+                    try {
+                    axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment" ,{current_date});
+                    }
+                    catch (err) {
+                       console.log(err);
+                    }
+
+                }
     }, []);
 
     useEffect(() => {
@@ -78,6 +89,9 @@ function YourEquipBasic() {
     }
 
     const columns = data[0] && Object.keys(data[0]);
+
+
+
     return (
         <container>
             <Navbar />

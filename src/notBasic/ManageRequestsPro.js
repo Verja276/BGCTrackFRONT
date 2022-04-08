@@ -34,6 +34,18 @@ function RequestDetailModal(props) {
                 window.location.reload();
             }
         }
+
+           const checkForOverdueEquipment = async (e) => {
+                    const current_date = new Date();
+                    try {
+                    axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment" ,{current_date});
+                    }
+                    catch (err) {
+                       console.log(err);
+                    }
+
+                }
+
     })
 
     function formatAMPM(date) {
@@ -66,7 +78,7 @@ function RequestDetailModal(props) {
             var endTimeTemp = formatAMPM(endTime.split(':'));
             var end_date = endDateTemp[2] + "/" + endDateTemp[1] + "/" + endDateTemp[0] + ", " + endTimeTemp;
     
-            var end_date_compare = endDate;
+            var end_date_compare = endDate + ',' + endTime;
             axios.post(`https://bgctrack.herokuapp.com/api/AcceptRequestEquip`, { barcode_id, initial_date, end_date, equipmentGroup, end_date_compare })
                 .then((response) => {
                     window.location.reload();
@@ -76,6 +88,7 @@ function RequestDetailModal(props) {
         }
 
     }
+
     return (
         (localStorage.getItem('barcode') == "") ? (
             <Modal

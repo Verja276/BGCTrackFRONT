@@ -35,6 +35,17 @@ function SearchEquipBasic() {
                 window.location.reload();
             }
         }
+
+        const checkForOverdueEquipment = async (e) => {
+                    const current_date = new Date();
+                    try {
+                    axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment" ,{current_date});
+                    }
+                    catch (err) {
+                       console.log(err);
+                    }
+
+                }
     }, []);
 
 
@@ -77,6 +88,18 @@ function SearchEquipBasic() {
     }
 
     const columns = data[0] && Object.keys(data[0]);
+
+    const checkForOverdueEquipment = async (e) => {
+            const current_date = new Date();
+            try {
+            axios.post("https://bgctrack.herokuapp.com/api/CheckForOverdueEquipment" ,{current_date});
+            }
+            catch (err) {
+               console.log(err);
+            }
+
+        }
+
     return (
         <container>
             <Navbar />
