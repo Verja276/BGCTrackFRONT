@@ -75,7 +75,7 @@ function RequestDetailModal(props) {
 
             axios.post(`https://bgctrack.herokuapp.com/api/AcceptRequestEquip`, { barcode_id, initial_date, end_date, equipmentGroup, end_date_compare })
                 .then((response) => {
-//                    window.location.reload();
+                    window.location.reload();
                     return;
                 });
 
